@@ -3,11 +3,25 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- CSS EXTERNO -->
     <link rel="stylesheet" href="./src/css/estilo.css">
     <title>Lista Tarefas</title>
 </head>
 <body>
+
+    <header>
+        <h1>Lista de Tarefas</h1>
+    </header>
+    <main>
+        <p>
+            <label for="task">Tarefa:</label>
+            <input type="text" id="task">
+        </p>
+        <button id="adicionarTarefa" onclick="adicionarTarefa()">Adicionar Tarefa</button>
+        <button id="removerTarefa" onclick="removerTarefa()">Remover Tarefa</button>
+    </main>
     
+    <!-- JS EXTERNO -->
     <script src="./src/js/script.js"></script>
 </body>
 </html>
