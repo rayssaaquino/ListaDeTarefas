@@ -60,6 +60,7 @@ function listarTarefas(){
             <div class="task-item">
                 <span>${tarefa[i]}</span>
                 <button onclick="editarTarefa(${i})">Editar</button>
+                <button onclick="removerTarefa(${i})">Remover</button>
             </div>
         
         `
@@ -69,7 +70,7 @@ function listarTarefas(){
 
 //FUNÇÃO REMOVER TAREFA
 
-function removerTarefa(){
+function removerTarefa(i){
 
     Swal.fire({
         icon:"warning",
@@ -81,7 +82,7 @@ function removerTarefa(){
         cancelButtonText:"Cancelar",
     }).then((result)=>{
         if(result.isConfirmed){
-            tarefa.pop();
+            tarefa.splice(i,1);
             listarTarefas();
             Swal.fire(
                 "Apagado",

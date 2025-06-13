@@ -1,0 +1,79 @@
+/* estilo.css */
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #ffeef4; 
+    margin: 0;
+    padding: 0;
+    color: #4b004f;
+}
+
+header {
+    background-color: #f7b6c2; 
+    color: #4b004f;
+    padding: 20px;
+    text-align: center;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+main {
+    max-width: 600px;
+    margin: 40px auto;
+    background-color: #fff0f6;
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+label {
+    font-weight: bold;
+}
+
+input[type="text"] {
+    width: 100%;
+    padding: 10px;
+    margin-top: 8px;
+    margin-bottom: 16px;
+    border: 1px solid #f5b5c0;
+    border-radius: 8px;
+    background-color: #fff;
+}
+
+
+button {
+    background-color: #ff8fb3;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    margin-right: 10px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: background-color 0.3s;
+}
+
+button:hover {
+    background-color: #ff6a97;
+}
+
+.task-item {
+    background-color: #ffe0ea;
+    border: 1px solid #f4a0b4;
+    padding: 10px;
+    margin-top: 10px;
+    border-radius: 8px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.task-item button {
+    background-color: #f472a7;
+    margin-left: 5px;
+    font-size: 0.9em;
+    padding: 6px 10px;
+}
+
+.task-item button:hover {
+    background-color: #e85891;
+}
