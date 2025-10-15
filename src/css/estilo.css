@@ -1,79 +1,222 @@
-/* estilo.css */
+/* ================= PALETA DE CORES ================= */
+:root {
+    --rosa-algodao: #fff0f6;       /* Fundo principal */
+    --rosa-claro: #ffe0ef;         /* Containers / Cards */
+    --rosa-medio: #ff99c2;         /* Botões e detalhes principais */
+    --rosa-escuro: #ff4d94;        /* Destaques / Ação forte */
+    --rosa-branco: #ffffff;         /* Branco para botões e cards */
+    --cinza-texto: #5c6773;        /* Texto secundário */
+    --sombra-fofa: 0 6px 18px rgba(255, 153, 194, 0.4);
+    --sombra-leve: 0 2px 4px rgba(0, 0, 0, 0.05);
+    --rosa-concluido: #ffd6e8;     /* Destaque para tarefas concluídas */
+}
 
-body {
-    font-family: Arial, sans-serif;
-    background-color: #ffeef4; 
+/* ================= ESTILO BASE ================= */
+* {
     margin: 0;
     padding: 0;
-    color: #4b004f;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
 }
 
-header {
-    background-color: #f7b6c2; 
-    color: #4b004f;
-    padding: 20px;
-    text-align: center;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;       /* sem scroll horizontal */
+    overflow-y: auto;         /* scroll vertical só se necessário */
 }
 
+body {
+    color: var(--cinza-texto);
+    line-height: 1.6;
+    /* Gradiente de baixo para cima */
+    background: linear-gradient(to top, #ffe6f0, #fff0f6);
+}
+
+/* ================= CONTAINER PRINCIPAL ================= */
 main {
     max-width: 600px;
     margin: 40px auto;
-    background-color: #fff0f6;
-    padding: 20px;
-    border-radius: 12px;
-    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    background-color: var(--rosa-claro);
+    padding: 35px;
+    border-radius: 20px;
+    box-shadow: var(--sombra-fofa);
+    overflow: hidden;
 }
 
+/* ================= FORMULÁRIO ================= */
 label {
-    font-weight: bold;
+    font-weight: 700;
+    display: block;
+    margin-bottom: 5px;
+    color: var(--cinza-texto);
 }
 
 input[type="text"] {
-    width: 100%;
-    padding: 10px;
-    margin-top: 8px;
-    margin-bottom: 16px;
-    border: 1px solid #f5b5c0;
-    border-radius: 8px;
-    background-color: #fff;
+    width: calc(100% - 24px);
+    padding: 12px;
+    margin-bottom: 20px;
+    border: 2px solid var(--rosa-medio);
+    border-radius: 12px;
+    background-color: var(--rosa-branco);
+    transition: all 0.3s;
+    font-size: 1em;
 }
 
+input[type="text"]:focus {
+    border-color: var(--rosa-escuro);
+    outline: none;
+    box-shadow: 0 0 8px rgba(255, 77, 148, 0.5);
+}
 
+/* ================= BOTÕES GERAIS ================= */
 button {
-    background-color: #ff8fb3;
-    color: white;
     border: none;
-    padding: 10px 15px;
-    margin-right: 10px;
-    border-radius: 8px;
     cursor: pointer;
-    font-weight: bold;
-    transition: background-color 0.3s;
+    text-align: center;
+    text-decoration: none;
+    background-color: var(--rosa-medio);
+    color: var(--rosa-branco);
+    padding: 10px 15px;
+    border-radius: 10px;
+    font-weight: 600;
+    transition: all 0.2s;
+    line-height: 1.2;
 }
 
 button:hover {
-    background-color: #ff6a97;
+    transform: translateY(1px) scale(1.05);
+}
+
+button:active {
+    transform: translateY(0) scale(0.98);
+}
+
+/* Botão principal Adicionar/Salvar */
+#main-action-btn {
+    background-color: var(--rosa-medio);
+    color: var(--rosa-branco);
+    padding: 12px 22px;
+    border-radius: 18px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    border-bottom: 3px solid var(--rosa-escuro);
+}
+
+#main-action-btn:hover {
+    background-color: var(--rosa-escuro);
+    border-bottom: 1px solid var(--rosa-escuro);
+}
+
+/* Modo Salvar Edição */
+#main-action-btn.salvar {
+    background-color: var(--rosa-escuro);
+    color: var(--rosa-branco);
+    border-bottom: 3px solid var(--rosa-medio);
+}
+
+#main-action-btn.salvar:hover {
+    background-color: var(--rosa-medio);
+    border-bottom: 1px solid var(--rosa-medio);
+}
+
+/* ================= LISTA DE TAREFAS ================= */
+#lista {
+    margin-top: 30px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    width: 100%;
 }
 
 .task-item {
-    background-color: #ffe0ea;
-    border: 1px solid #f4a0b4;
-    padding: 10px;
-    margin-top: 10px;
-    border-radius: 8px;
+    background-color: var(--rosa-branco);
+    border: 2px solid var(--rosa-claro);
+    border-left: 6px solid var(--rosa-medio);
+    padding: 15px 18px;
+    border-radius: 12px;
     display: flex;
     justify-content: space-between;
     align-items: center;
+    transition: all 0.3s ease, transform 0.2s ease;
+    animation: fadeIn 0.4s ease forwards;
+    box-shadow: var(--sombra-leve);
 }
 
-.task-item button {
-    background-color: #f472a7;
-    margin-left: 5px;
+.task-item:hover {
+    background-color: var(--rosa-algodao);
+    transform: translateX(5px);
+}
+
+.task-content {
+    flex-grow: 1;
+    font-size: 1.05em;
+    color: var(--cinza-texto);
+    word-wrap: break-word;
+    margin-right: 20px;
+}
+
+/* Tarefas concluídas */
+.task-item.completed {
+    background-color: var(--rosa-concluido);
+    border-left-color: var(--rosa-escuro);
+}
+
+.task-item.completed:hover {
+    transform: none;
+    cursor: default;
+}
+
+.task-item.completed .task-content {
+    text-decoration: line-through 2px var(--rosa-escuro);
+    color: #d47ab9;
+}
+
+/* ================= BOTÕES DAS TAREFAS ================= */
+.task-buttons {
+    display: flex;
+    gap: 8px;
+    flex-shrink: 0;
+}
+
+.task-buttons button {
+    background-color: var(--rosa-branco);
+    color: var(--rosa-escuro);
+    padding: 8px 10px;
+    border-radius: 10px;
     font-size: 0.9em;
-    padding: 6px 10px;
+    font-weight: 600;
+    border: 2px solid var(--rosa-claro);
+    transition: all 0.2s;
 }
 
-.task-item button:hover {
-    background-color: #e85891;
+.task-buttons button:hover {
+    background-color: var(--rosa-claro);
+}
+
+/* ================= POPUP BUTTONS ================= */
+.swal2-actions {
+    display: flex;
+    gap: 12px;
+    justify-content: center;
+}
+
+.popup-btn {
+    padding: 8px 16px !important;
+    border-radius: 12px !important;
+    font-weight: 600 !important;
+}
+
+/* ================= ANIMAÇÃO ================= */
+@keyframes fadeIn {
+    from { opacity: 0; transform: scale(0.95); }
+    to { opacity: 1; transform: scale(1); }
+}
+
+/* ================= RESPONSIVIDADE ================= */
+@media (max-width: 480px) {
+    main { width: 95%; padding: 25px; }
+    button { width: 100%; }
 }
