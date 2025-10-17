@@ -108,7 +108,7 @@ function listarTarefas() {
   listaElement.innerHTML = tarefas
     .map((tarefa, i) => {
       const completedClass = tarefa.concluida ? "completed" : "";
-      const icon = "🌸";
+      const icon = "🩷";
       return `
         <div class="task-item ${completedClass}" data-index="${i}">
           <div class="task-content">${icon} ${tarefa.texto}</div>

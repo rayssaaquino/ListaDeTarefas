@@ -1,33 +1,118 @@
 /* ================== CARD LOFI ================== */
 .lofi-card {
-    width: 280px;       /* mesma largura do Pomodoro */
-    height: 300px;      /* mesma altura do Pomodoro */
+    width: 280px;              
+    height: 300px;             
     background-color: var(--rosa-branco);
     padding: 20px;
-    border-radius: 20px;
-    box-shadow: var(--sombra-fofa);
+    border-radius: 25px;
+    box-shadow: 0 10px 25px rgba(122, 61, 103, 0.2);
     text-align: center;
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: space-between;
+    align-items: center;
     gap: 15px;
+    transition: transform 0.3s, box-shadow 0.3s;
 }
+
 
 .lofi-card h2 {
     color: var(--rosa-escuro);
-    font-size: 1.2em;
+    font-size: 1.5em;
+    font-weight: bold;
 }
 
-.lofi-card audio {
-    width: 100%;
-    outline: none;
-    border-radius: 12px;
+/* Imagem da capa */
+.lofi-cover {
+    width: 120px;
+    height: 100px;
+    border-radius: 20px;
+    object-fit: cover;
+    margin-bottom: 15px;
 }
+
+/* ================== BOTÃO PLAY/PAUSE FOFO ================== */
+#lofi-btn {
+    width: 70px;
+    height: 70px;
+    border-radius: 50%; /* círculo */
+    font-size: 2em; /* ícone grande */
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    outline: none;
+    transition: transform 0.2s;
+}
+
+/* Hover e clique simples */
+#lofi-btn:hover {
+    transform: scale(1.1);
+}
+
+#lofi-btn:active {
+    transform: scale(0.95);
+}
+
+.lofi-player-img {
+    width: 30px;
+    height: 30px;
+    cursor: pointer;
+    border-radius: 50%;
+    transition: transform 0.2s;
+}
+
+.lofi-player-img:hover {
+    transform: scale(1.1);
+}
+
+
+/* ================== BOTÕES DE MÚSICA HORIZONTAIS ================== */
+.lofi-options {
+    display: flex;
+    justify-content: space-between; /* espaço uniforme entre os botões */
+    width: 100%;
+    margin-top: 15px;
+    gap: 10px; /* espaçamento entre os botões */
+}
+
+.lofi-options button {
+    width: 50px;
+    height: 50px;
+    border: none;
+    border-radius: 12px; /* cantos arredondados */
+    background-color: var(--rosa-claro);
+    font-size: 1.6em;
+    cursor: pointer;
+    transition: 0.3s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 3px 6px rgba(0,0,0,0.1);
+}
+
+.lofi-options button:hover {
+    background-color: var(--rosa-medio);
+    transform: scale(1.1);
+}
+
+/* Botão selecionado */
+.lofi-options button.selecionada {
+    background-color: var(--rosa-escuro);
+    color: #fff;
+}
+
 
 /* ================== RESPONSIVIDADE ================== */
 @media (max-width: 768px) {
     .lofi-card {
         width: 90%;
         height: auto;
+    }
+
+    .lofi-options button {
+        width: 45px;
+        height: 45px;
+        font-size: 1.4em;
     }
 }
