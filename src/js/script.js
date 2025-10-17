@@ -209,6 +209,7 @@ function removerTarefa(i) {
   });
 }
 
+
 // --- ENTER ADICIONA ---
 taskInput.addEventListener("keypress", (e) => {
   if (e.key === "Enter") mainAction();

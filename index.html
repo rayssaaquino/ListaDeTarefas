@@ -1,25 +1,59 @@
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <!-- CSS EXTERNO -->
-    <link rel="stylesheet" href="./src/css/estilo.css" />
-    <link rel="icon" type="image/png" href="./src/assets/to-do-list.png" />
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    <title>Lista de Tarefas</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="./src/css/estilo.css" />
+  <link rel="stylesheet" href="./src/css/pomodoro.css" />
+  <link rel="stylesheet" href="./src/css/lofi.css" />
+  <link rel="icon" type="image/png" href="./src/assets/to-do-list.png" />
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  <title>Lista de Tarefas</title>
 </head>
 <body>
 
-    <main>
-        <label for="task">Tarefa:</label>
-        <input type="text" id="task" />
-        <!-- Botão unificado, mesma estilização antiga -->
-        <button id="main-action-btn" onclick="mainAction()">Adicionar Tarefa</button>
-        <div id="lista"></div> 
-    </main>
+  <main class="layout">
 
-    <!-- JS EXTERNO -->
-    <script src="./src/js/script.js"></script>
+    <!-- ===== COLUNA ESQUERDA: POMODORO + LOFI ===== -->
+    <div class="left-column">
+
+      <!-- 🕒 CARD POMODORO -->
+   <section class="pomodoro">
+  <div id="pomodoro-card" class="pomodoro-card">
+    <div id="timer">25:00</div>
+    <img src="./src/assets/bunny2.png" alt="Pomodoro parado" id="pomodoro-static" class="pomodoro-img" />
+    <img src="./src/assets/bunny.gif" alt="Pomodoro animado" id="pomodoro-gif" class="pomodoro-gif" />
+    <button id="start">Iniciar</button>
+  </div>
+</section>
+
+
+
+      <!-- 🎵 CARD LOFI -->
+      <section class="lofi">
+        <div class="lofi-card">
+          <h2>Lofi</h2>
+          <audio controls loop>
+            <source src="./src/assets/lofi.mp3" type="audio/mpeg" />
+            Seu navegador não suporta áudio.
+          </audio>
+        </div>
+      </section>
+
+    </div>
+
+    <!-- ===== COLUNA DIREITA: LISTA DE TAREFAS ===== -->
+    <section class="tarefas">
+      <label for="task">Tarefa:</label>
+      <input type="text" id="task" />
+      <button id="main-action-btn" onclick="mainAction()">Adicionar Tarefa</button>
+      <div id="lista"></div> 
+    </section>
+
+  </main>
+
+  <!-- JS -->
+  <script src="./src/js/script.js"></script>
+  <script src="./src/js/pomodoro.js"></script>
 </body>
 </html>

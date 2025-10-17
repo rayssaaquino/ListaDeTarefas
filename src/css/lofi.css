@@ -1,0 +1,33 @@
+/* ================== CARD LOFI ================== */
+.lofi-card {
+    width: 280px;       /* mesma largura do Pomodoro */
+    height: 300px;      /* mesma altura do Pomodoro */
+    background-color: var(--rosa-branco);
+    padding: 20px;
+    border-radius: 20px;
+    box-shadow: var(--sombra-fofa);
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 15px;
+}
+
+.lofi-card h2 {
+    color: var(--rosa-escuro);
+    font-size: 1.2em;
+}
+
+.lofi-card audio {
+    width: 100%;
+    outline: none;
+    border-radius: 12px;
+}
+
+/* ================== RESPONSIVIDADE ================== */
+@media (max-width: 768px) {
+    .lofi-card {
+        width: 90%;
+        height: auto;
+    }
+}

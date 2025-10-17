@@ -1,0 +1,78 @@
+.pomodoro-card {
+    width: 280px;
+    height: 300px; /* altura fixa */
+    background-color: var(--rosa-branco);
+    padding: 15px;
+    border-radius: 20px;
+    box-shadow: var(--sombra-fofa);
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start; /* começa do topo */
+    align-items: center;
+    position: relative;
+    gap: 5px; /* menor gap para aproximar elementos */
+}
+
+/* Timer */
+#timer {
+    font-size: 3em;
+    font-weight: 700;
+    color: var(--rosa-escuro);
+    margin: 0;
+}
+
+.pomodoro-img,
+#pomodoro-static {
+    width: 138px;  /* imagem estática menor */
+    height: 138px;
+    margin: -5px 0 5px 0;
+    display: block;
+    flex-shrink: 0;
+    object-fit: contain;
+}
+
+.pomodoro-gif {
+    width: 145px;  /* GIF um pouco maior */
+    height: 145px;
+    margin: -5px 0 5px 0;
+    display: none; /* inicia escondido */
+    flex-shrink: 0;
+    object-fit: contain;
+}
+
+/* GIF inicia escondido */
+#pomodoro-gif {
+    display: none;
+}
+
+/* Botão sempre no mesmo lugar */
+#start {
+    width: 80%;
+    padding: 10px 0;
+    border-radius: 12px;
+    font-weight: 600;
+    background-color: var(--rosa-medio);
+    border-bottom: 3px solid var(--rosa-escuro);
+    cursor: pointer;
+    margin-top: auto; /* mantém no final do card */
+    transition: all 0.3s ease;
+}
+
+#start:hover {
+    background-color: var(--rosa-escuro);
+    transform: scale(1.03);
+}
+
+/* Estado iniciado */
+.pomodoro-card.started #timer {
+    font-size: 3em;
+}
+
+.pomodoro-card.started .pomodoro-gif {
+    display: block;
+}
+
+.pomodoro-card.started #pomodoro-static {
+    display: none;
+}

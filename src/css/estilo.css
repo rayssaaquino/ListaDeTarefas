@@ -23,26 +23,47 @@ html, body {
     height: 100%;
     margin: 0;
     padding: 0;
-    overflow-x: hidden;       /* sem scroll horizontal */
-    overflow-y: auto;         /* scroll vertical só se necessário */
+    overflow-x: hidden;
+    overflow-y: auto;
 }
 
 body {
     color: var(--cinza-texto);
     line-height: 1.6;
-    /* Gradiente de baixo para cima */
     background: linear-gradient(to top, #ffe6f0, #fff0f6);
 }
 
-/* ================= CONTAINER PRINCIPAL ================= */
+/* ================= LAYOUT PRINCIPAL ================= */
 main {
-    max-width: 600px;
+    max-width: 1200px;
     margin: 40px auto;
-    background-color: var(--rosa-claro);
+    padding: 0 20px;
+}
+
+.layout {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 40px;
+    flex-wrap: wrap;
+}
+
+/* ================= COLUNA ESQUERDA ================= */
+.left-column {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
+
+/* ================= COLUNA TAREFAS ================= */
+.tarefas {
+    width: 600px;
+    background-color: white;
     padding: 35px;
     border-radius: 20px;
     box-shadow: var(--sombra-fofa);
-    overflow: hidden;
+    display: flex;
+    flex-direction: column;
 }
 
 /* ================= FORMULÁRIO ================= */
@@ -75,25 +96,18 @@ button {
     border: none;
     cursor: pointer;
     text-align: center;
-    text-decoration: none;
     background-color: var(--rosa-medio);
     color: var(--rosa-branco);
     padding: 10px 15px;
     border-radius: 10px;
     font-weight: 600;
     transition: all 0.2s;
-    line-height: 1.2;
 }
 
 button:hover {
     transform: translateY(1px) scale(1.05);
 }
 
-button:active {
-    transform: translateY(0) scale(0.98);
-}
-
-/* Botão principal Adicionar/Salvar */
 #main-action-btn {
     background-color: var(--rosa-medio);
     color: var(--rosa-branco);
@@ -108,18 +122,6 @@ button:active {
 #main-action-btn:hover {
     background-color: var(--rosa-escuro);
     border-bottom: 1px solid var(--rosa-escuro);
-}
-
-/* Modo Salvar Edição */
-#main-action-btn.salvar {
-    background-color: var(--rosa-escuro);
-    color: var(--rosa-branco);
-    border-bottom: 3px solid var(--rosa-medio);
-}
-
-#main-action-btn.salvar:hover {
-    background-color: var(--rosa-medio);
-    border-bottom: 1px solid var(--rosa-medio);
 }
 
 /* ================= LISTA DE TAREFAS ================= */
@@ -141,7 +143,6 @@ button:active {
     justify-content: space-between;
     align-items: center;
     transition: all 0.3s ease, transform 0.2s ease;
-    animation: fadeIn 0.4s ease forwards;
     box-shadow: var(--sombra-leve);
 }
 
@@ -158,15 +159,9 @@ button:active {
     margin-right: 20px;
 }
 
-/* Tarefas concluídas */
 .task-item.completed {
     background-color: var(--rosa-concluido);
     border-left-color: var(--rosa-escuro);
-}
-
-.task-item.completed:hover {
-    transform: none;
-    cursor: default;
 }
 
 .task-item.completed .task-content {
@@ -189,14 +184,13 @@ button:active {
     font-size: 0.9em;
     font-weight: 600;
     border: 2px solid var(--rosa-claro);
-    transition: all 0.2s;
 }
 
 .task-buttons button:hover {
     background-color: var(--rosa-claro);
 }
 
-/* ================= POPUP BUTTONS ================= */
+/* ================= POPUP ================= */
 .swal2-actions {
     display: flex;
     gap: 12px;
@@ -209,14 +203,11 @@ button:active {
     font-weight: 600 !important;
 }
 
-/* ================= ANIMAÇÃO ================= */
-@keyframes fadeIn {
-    from { opacity: 0; transform: scale(0.95); }
-    to { opacity: 1; transform: scale(1); }
+/* ================= RESPONSIVIDADE ================= */
+@media (max-width: 1024px) {
+    main { padding: 20px 10px; }
 }
 
-/* ================= RESPONSIVIDADE ================= */
-@media (max-width: 480px) {
-    main { width: 95%; padding: 25px; }
-    button { width: 100%; }
+@media (max-width: 768px) {
+    .tarefas { width: 90%; margin-bottom: 20px; }
 }
