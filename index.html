@@ -12,51 +12,62 @@
 </head>
 <body>
 
-  <main class="layout">
+<main class="layout">
 
-    <div class="left-column">
+  <div class="left-column">
 
-      <section class="pomodoro">
-        <div id="pomodoro-card" class="pomodoro-card">
-          <div id="timer">30:00</div>
-          <img src="./src/assets/pomodoro/bunny.png" alt="Pomodoro parado" id="pomodoro-static" class="pomodoro-img" />
-          <img src="./src/assets/pomodoro/bunny.gif" alt="Pomodoro animado" id="pomodoro-gif" class="pomodoro-gif" />
-          <img src="./src/assets/pomodoro/sleepy-bunny.gif" alt="Descanso" id="descanso-gif" class="pomodoro-gif" />
-          <button id="start">Iniciar</button>
-        </div>
-      </section>
+    <!-- Pomodoro -->
+    <section class="pomodoro">
+      <div id="pomodoro-card" class="pomodoro-card">
+        <div id="timer">30:00</div>
+        <img src="./src/assets/pomodoro/bunny.png" alt="Pomodoro parado" id="pomodoro-static" class="pomodoro-img" />
+        <img src="./src/assets/pomodoro/bunny.gif" alt="Pomodoro animado" id="pomodoro-gif" class="pomodoro-gif" />
+        <img src="./src/assets/pomodoro/sleepy-bunny.gif" alt="Descanso" id="descanso-gif" class="pomodoro-gif" />
+        <button id="start">Iniciar</button>
+      </div>
+    </section>
 
-      <section class="lofi">
-        <div class="lofi-card">
-          <h2>Lofi</h2>
-          <img id="lofi-cover" src="./src/assets/sound-8563_256.gif" alt="Capa Lofi" class="lofi-cover">
-          <img src="./src/assets/music/toque.png" alt="Play" id="lofi-img-btn" class="lofi-player-img">
-          <audio id="lofi-audio" loop>
-            <source src="./src/assets/music/lofi1.mp3" type="audio/mpeg">
-            Seu navegador não suporta áudio.
-          </audio>
-          <div class="lofi-options">
-            <button class="lofi-music-btn" data-src="./src/assets/music/lofi1.mp3">🎹</button>
-            <button class="lofi-music-btn" data-src="./src/assets/lofi2.mp3">🎧</button>
-            <button class="lofi-music-btn" data-src="./src/assets/music/rain.mp3">🌧️</button>
-            <button class="lofi-music-btn" data-src="./src/assets/music/lofi4.mp3">🎺</button>
-          </div>
-        </div>
-      </section>
+    <!-- Card Lofi -->
+    <div class="lofi-card">
+
+      <!-- Container da capa -->
+      <div class="lofi-cover-container">
+        <img id="lofi-cover" src="./src/assets/music/lofi1.jpg" alt="Capa Lofi" class="lofi-cover">
+        <!-- substituído: imagem do play por botão com emoji (mesmos id/class) -->
+        <button id="lofi-img-btn" class="lofi-player-img" aria-label="Play/Pause">▶</button>
+      </div>
+
+      <!-- Botões de música -->
+      <div class="lofi-options">
+        <button class="lofi-music-btn active" data-src="./src/assets/music/lofi1.mp3" data-img="./src/assets/music/lofi.jpg">🎹</button>
+        <button class="lofi-music-btn" data-src="./src/assets/music/rain.mp3" data-img="./src/assets/music/chuvas.png">🌧️</button>
+        <button class="lofi-music-btn" data-src="./src/assets/music/cafe.mp3" data-img="./src/assets/music/cover-cafe.png">☕</button>
+        <button class="lofi-music-btn" data-src="./src/assets/music/work.mp3" data-img="./src/assets/music/cover-work.png">💻</button>
+      </div>
+
+      <!-- Player de áudio -->
+      <audio id="lofi-audio" loop>
+        <source src="./src/assets/music/lofi1.mp3" type="audio/mpeg">
+        Seu navegador não suporta áudio.
+      </audio>
 
     </div>
 
-    <section class="tarefas">
-      <label for="task">Tarefa:</label>
-      <input type="text" id="task" />
-      <button id="main-action-btn" onclick="mainAction()">Adicionar Tarefa</button>
-      <div id="lista"></div> 
-    </section>
+  </div>
 
-  </main>
+  <!-- Lista de tarefas -->
+  <section class="tarefas">
+    <label for="task">Tarefa:</label>
+    <input type="text" id="task" />
+    <button id="main-action-btn" onclick="mainAction()">Adicionar Tarefa</button>
+    <div id="lista"></div> 
+  </section>
 
-  <script src="./src/js/script.js"></script>
-  <script src="./src/js/pomodoro.js"></script>
-  <script src="./src/js/lofi.js"></script>
+</main>
+
+<script src="./src/js/script.js"></script>
+<script src="./src/js/pomodoro.js"></script>
+<script src="./src/js/lofi.js"></script>
+
 </body>
 </html>

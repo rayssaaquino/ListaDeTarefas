@@ -1,118 +1,168 @@
-/* ================== CARD LOFI ================== */
 .lofi-card {
-    width: 280px;              
-    height: 300px;             
-    background-color: var(--rosa-branco);
-    padding: 20px;
-    border-radius: 25px;
-    box-shadow: 0 10px 25px rgba(122, 61, 103, 0.2);
-    text-align: center;
+    /* Dimensões fixas mantidas */
+    width: 280px;
+    height: 300px;
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
     align-items: center;
-    gap: 15px;
-    transition: transform 0.3s, box-shadow 0.3s;
+    text-align: center;
+    
+    /* Otimização para caber em 300px */
+    gap: 8px;          
+    padding: 10px;      
+    background-color: #fff;
+    border-radius: 16px;
+    box-shadow: var(--sombra-fofa); 
+    position: relative;
+    overflow: hidden; 
+    transition: box-shadow 0.3s ease;
 }
 
 
-.lofi-card h2 {
-    color: var(--rosa-escuro);
-    font-size: 1.5em;
-    font-weight: bold;
+/* Container fixo da capa - AJUSTADO PARA CABER NO CARD (220px -> 180px) */
+.lofi-cover-container {
+    width: 220px;
+    height: 160px; 
+    border-radius: 10px;
+    margin-top: 12px;
+    overflow: hidden;
+    position: relative;
 }
 
 /* Imagem da capa */
 .lofi-cover {
-    width: 120px;
-    height: 100px;
-    border-radius: 20px;
+    width: 100%;
+    height: 100%;
+    border: 3px solid var(--rosa-medio);
+    border-radius: 10px;
     object-fit: cover;
-    margin-bottom: 15px;
+    transition: opacity 0.5s ease-in-out;
+    opacity: 1;
 }
 
-/* ================== BOTÃO PLAY/PAUSE FOFO ================== */
-#lofi-btn {
-    width: 70px;
-    height: 70px;
-    border-radius: 50%; /* círculo */
-    font-size: 2em; /* ícone grande */
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    outline: none;
-    transition: transform 0.2s;
-}
-
-/* Hover e clique simples */
-#lofi-btn:hover {
-    transform: scale(1.1);
-}
-
-#lofi-btn:active {
-    transform: scale(0.95);
-}
-
+/* Botão play/pause central (BOLA) - AUMENTADO O ÍCONE INTERNO */
 .lofi-player-img {
-    width: 30px;
-    height: 30px;
+    width: 50px;    
+    height: 50px;   
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
     cursor: pointer;
+    z-index: 10;
+    background: rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(3px); 
     border-radius: 50%;
-    transition: transform 0.2s;
+    
+    display: flex; /* Transforma a bola em um container flex */
+    justify-content: center; /* Centraliza horizontalmente o emoji */
+    align-items: center;   /* Centraliza verticalmente o emoji */
+    font-size: 1em; /* <-- AQUI ESTÁ O TRUQUE! Aumenta o tamanho do texto/emoji */
+    padding: 0; /* Remove o padding da bola para dar espaço ao emoji */
+    
+    color: #fff; /* Cor do emoji (opcional, se for texto/ícone de fonte) */
+
+    transition: transform 0.2s ease, background 0.2s ease;
 }
 
 .lofi-player-img:hover {
-    transform: scale(1.1);
+    transform: translate(-50%, -50%) scale(1.15); 
+    background: rgba(255, 255, 255, 0.5);
+}
+
+/* Barra de volume abaixo da capa */
+.volume-container {
+  width: 220px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  margin-top: 10px;
+}
+
+.volume-emoji {
+  font-size: 22px;
 }
 
 
-/* ================== BOTÕES DE MÚSICA HORIZONTAIS ================== */
+.volume-slider {
+  width: 100%;
+  height: 6px;
+  -webkit-appearance: none;
+  appearance: none;
+  background: rgba(255, 182, 193, 0.5);
+  border-radius: 3px;
+  cursor: pointer;
+}
+
+.volume-slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: #ff69b4;
+}
+
+.volume-slider::-moz-range-thumb {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: #ff69b4;
+}
+
+/* Botões de música centralizados */
 .lofi-options {
-    display: flex;
-    justify-content: space-between; /* espaço uniforme entre os botões */
-    width: 100%;
-    margin-top: 15px;
-    gap: 10px; /* espaçamento entre os botões */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  margin-top: 15px;
 }
 
-.lofi-options button {
-    width: 50px;
-    height: 50px;
-    border: none;
-    border-radius: 12px; /* cantos arredondados */
-    background-color: var(--rosa-claro);
-    font-size: 1.6em;
-    cursor: pointer;
-    transition: 0.3s;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    box-shadow: 0 3px 6px rgba(0,0,0,0.1);
+.lofi-music-btn {
+  background: #ff99c2;
+  border: none;
+  border-bottom: 3px solid var(--rosa-escuro);
+  border-radius: 10px;
+  font-size: 22px;
+  cursor: pointer;
+  transition: transform 0.2s ease, background-color 0.2s ease, box-shadow 0.2s ease;
+  padding: 8px 12px;
 }
 
-.lofi-options button:hover {
-    background-color: var(--rosa-medio);
-    transform: scale(1.1);
+.lofi-music-btn:hover {
+  transform: scale(1.1);
+  background-color: #ff4d94;
+  box-shadow: 0 0 8px rgba(255, 182, 193, 0.5);
 }
 
-/* Botão selecionado */
-.lofi-options button.selecionada {
-    background-color: var(--rosa-escuro);
-    color: #fff;
+.lofi-music-btn.active {
+  background-color: #ff4d94;
+  box-shadow: 0 0 12px rgba(255, 105, 180, 0.6);
+  transform: scale(1.1);
 }
-
 
 /* ================== RESPONSIVIDADE ================== */
-@media (max-width: 768px) {
-    .lofi-card {
-        width: 90%;
-        height: auto;
-    }
+@media (max-width: 600px) {
+  .lofi-cover-container {
+    width: 180px;
+    height: 180px;
+  }
 
-    .lofi-options button {
-        width: 45px;
-        height: 45px;
-        font-size: 1.4em;
-    }
+  .lofi-player-btn {
+    font-size: 40px;
+  }
+
+  .volume-container {
+    width: 180px;
+  }
+
+  .volume-slider {
+    height: 5px;
+  }
+
+  .lofi-music-btn {
+    font-size: 20px;
+    padding: 6px 10px;
+  }
 }
