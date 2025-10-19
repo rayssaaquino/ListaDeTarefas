@@ -7,7 +7,6 @@
   <link rel="stylesheet" href="./src/css/pomodoro.css" />
   <link rel="stylesheet" href="./src/css/lofi.css" />
   <link rel="icon" type="image/png" href="./src/assets/to-do-list.png" />
-  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
   <title>Lista de Tarefas</title>
 </head>
 <body>
@@ -29,15 +28,11 @@
 
     <!-- Card Lofi -->
     <div class="lofi-card">
-
-      <!-- Container da capa -->
       <div class="lofi-cover-container">
         <img id="lofi-cover" src="./src/assets/music/lofi.jpg" alt="Capa Lofi" class="lofi-cover">
-        <!-- substituído: imagem do play por botão com emoji (mesmos id/class) -->
         <button id="lofi-img-btn" class="lofi-player-img" aria-label="Play/Pause">▶</button>
       </div>
 
-      <!-- Botões de música -->
       <div class="lofi-options">
         <button class="lofi-music-btn active" data-src="./src/assets/music/lofi.mp3" data-img="./src/assets/music/lofi.jpg">🎧</button>
         <button class="lofi-music-btn" data-src="./src/assets/music/study.mp3" data-img="./src/assets/music/study.png">📚</button>
@@ -45,7 +40,6 @@
         <button class="lofi-music-btn" data-src="./src/assets/music/rain.mp3" data-img="./src/assets/music/rain.png">🌧️</button>
       </div>
 
-      <!-- Player de áudio -->
       <audio id="lofi-audio" loop>
         <source src="./src/assets/music/lofi1.mp3" type="audio/mpeg">
         Seu navegador não suporta áudio.
@@ -65,9 +59,19 @@
 
 </main>
 
+<!-- POPUP MANUAL -->
+<div id="popup" class="popup-overlay">
+  <div id="popup-box" class="popup-box">
+    <p id="popup-message">🎀 Pomodoro iniciado!</p>
+  </div>
+</div>
+
 <script src="./src/js/script.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <script src="./src/js/pomodoro.js"></script>
 <script src="./src/js/lofi.js"></script>
 
 </body>
 </html>
+
+<script src="./src/assets/tasks/complete.gif"></script>

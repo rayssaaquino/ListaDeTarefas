@@ -77,3 +77,70 @@
     display: none;
 }
 
+
+/* Overlay do popup */
+.popup-overlay {
+  display: none;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 1000;
+  pointer-events: none;
+}
+
+/* Caixa do popup */
+.popup-box {
+  pointer-events: auto;
+  background-color: #fff0f6;
+  color: #7a3d67;
+  padding: 30px 35px;
+  border-radius: 20px;
+  text-align: left; /* texto alinhado à esquerda */
+  box-shadow: 0 8px 20px rgba(0,0,0,0.25);
+  max-width: 350px;
+  animation: popupFade 0.3s ease-in-out;
+  font-family: 'Poppins', sans-serif;
+  display: flex;
+  flex-direction: column;
+  gap: 10px; /* espaço entre linhas */
+}
+
+/* Título centralizado */
+.popup-box h2 {
+  font-size: 1.5em;
+  margin-bottom: 10px;
+  color: #c94f9f;
+  text-align: center;
+}
+
+/* Texto de instruções */
+.popup-box p {
+  font-size: 1em;
+  line-height: 1.5;
+  margin: 0;
+}
+
+/* Botão centralizado */
+.popup-box button {
+  margin: 15px auto 0 auto; /* centraliza horizontalmente */
+  padding: 10px 20px;
+  background-color: #f4c2e0;
+  color: #7a3d67;
+  border: none;
+  border-radius: 12px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.popup-box button:hover {
+  background-color: #e29ac6;
+  transform: scale(1.05);
+}
+
+/* Animação do popup */
+@keyframes popupFade {
+  from { opacity: 0; transform: scale(0.8); }
+  to { opacity: 1; transform: scale(1); }
+}

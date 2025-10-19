@@ -31,13 +31,12 @@ function adicionarTarefa() {
   const texto = taskInput.value.trim();
   if (!texto) {
     Swal.fire({
+      title: `<span style="color:#ff4d94;">Opsie!</span>`,
+      html: `<p style="font-size:14px; color:#5c6773;">Digite uma tarefa antes de adicionar!</p>`,
       icon: "error",
-      title: "Opsie! 🎀",
-      text: "Digite uma tarefa antes de adicionar!",
-      background: "#ffe0ef",
-      color: "#7a3d67",
+      background: "#fff",
       confirmButtonColor: "#ff4d94",
-      customClass: { confirmButton: 'popup-btn' }
+      customClass: { confirmButton: "popup-btn" }
     });
     return;
   }
@@ -47,12 +46,11 @@ function adicionarTarefa() {
   listarTarefas();
 
   Swal.fire({
+    title: `<span style="#5c6773">Tarefa adicionada!</span>`,
     icon: "success",
-    title: "💖 Tarefa adicionada!",
     showConfirmButton: false,
     timer: 1000,
-    background: "#fff",
-    color: "#7a3d67"
+    background: "#fff"
   });
 
   taskInput.value = "";
@@ -64,13 +62,12 @@ function salvarTarefa() {
   const texto = taskInput.value.trim();
   if (!texto) {
     Swal.fire({
+      title: `<span style="color:#ff4d94;">Oopsie!</span>`,
+      html: `<p style="font-size:14px; color:#5c6773;">Não dá pra salvar tarefa vazia</p>`,
       icon: "error",
-      title: "Oopsie! 🎀",
-      text: "Não dá pra salvar tarefa vazia",
       background: "#fff",
-      color: "#7a3d67",
       confirmButtonColor: "#ff4d94",
-      customClass: { confirmButton: 'popup-btn' }
+      customClass: { confirmButton: "popup-btn" }
     });
     return;
   }
@@ -84,12 +81,11 @@ function salvarTarefa() {
   taskInput.focus();
 
   Swal.fire({
+    title: `<span style="#5c6773">Tarefa atualizada!</span>`,
     icon: "success",
-    title: "✨ Tarefa atualizada!",
     showConfirmButton: false,
     timer: 1000,
-    background: "#fff",
-    color: "#7a3d67"
+    background: "#fff"
   });
 
   mainActionBtn.textContent = "Adicionar Tarefa"; // volta o texto do botão
@@ -127,20 +123,23 @@ function listarTarefas() {
 
 // --- CONCLUIR / DESFAZER ---
 function toggleConcluida(i) {
-  tarefas[i].concluida = !tarefas[i].concluida;
+  const tarefa = tarefas[i];
+  tarefa.concluida = !tarefa.concluida;
   salvarNoLocalStorage();
   listarTarefas();
 
-  Swal.fire({
-    icon: tarefas[i].concluida ? "success" : "info",
-    title: tarefas[i].concluida
-      ? "🎉 Tarefa concluída!"
-      : "Voltando pra lista! ✍️",
-    showConfirmButton: false,
-    timer: 1000,
-    background: "#fff",
-    color: "#7a3d67"
-  });
+  if (tarefa.concluida) {
+    Swal.fire({
+      title: `<span style="color:#ff4d94;">Tarefa concluída!</span>`,
+      html: `<p style="font-size:14px; color:#5c6773;">Você mandou muito bem, continue assim</p>
+             <img src="./src/assets/tasks/done.gif"
+                  alt="Tarefa concluída"
+                  style="width:150px; height:auto; display:block; margin:10px auto;">`,
+      background: "#fff",
+      showConfirmButton: false,
+      timer: 1800
+    });
+  }
 
   verificarTodasConcluidas();
 }
@@ -149,13 +148,25 @@ function toggleConcluida(i) {
 function verificarTodasConcluidas() {
   if (tarefas.length > 0 && tarefas.every(t => t.concluida)) {
     Swal.fire({
-      icon: 'success',
-      title: '🎉 Parabéns!',
-      text: 'Você concluiu todas as tarefas!',
-      background: '#ffffffff',
-      color: '#5c6773',
-      confirmButtonColor: '#ff4d94',
-      customClass: { confirmButton: 'popup-btn' }
+      title: `<span style="color:#ff4d94;">Parabéns! 🎉</span>`,
+      html: `
+        <div style="
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          gap: 15px;
+        ">
+          <p style="margin:0; text-align:center; font-size:14px; color:#5c6773;">
+            Você concluiu todas as tarefas da lista
+          </p>
+          <img src="./src/assets/tasks/complete.gif"
+               alt="Tarefas completas"
+               style="width:200px; height:auto; display:block;">
+        </div>
+      `,
+      background: "#fff",
+      confirmButtonColor: "#ff4d94",
+      confirmButtonText: "Que orgulho!"
     });
   }
 }
@@ -166,30 +177,19 @@ function editarTarefa(i) {
   taskInput.value = tarefas[i].texto;
   taskInput.focus();
   mainActionBtn.textContent = "Salvar Tarefa"; // muda texto do botão
-
-  Swal.fire({
-    icon: "info",
-    title: "Modo Edição 📝",
-    text: "Altere o texto e clique em Salvar Tarefa!",
-    showConfirmButton: false,
-    timer: 1800,
-    background: "#fff",
-    color: "#7a3d67"
-  });
 }
 
 // --- REMOVER TAREFA ---
 function removerTarefa(i) {
   Swal.fire({
-    icon: "question",
-    title: "Remover esta tarefa?",
-    text: "Ela será excluída permanentemente!",
+    title: `<span style="color:#ff4d94;">Remover esta tarefa?</span>`,
+    html: `<p style="font-size:14px; color:#5c6773;">Ela será excluída permanentemente!</p>`,
     showCancelButton: true,
     confirmButtonText: "Sim, apagar!",
     cancelButtonText: "Cancelar",
     confirmButtonColor: "#ff4d94",
     cancelButtonColor: "#ff99c2",
-    customClass: { confirmButton: 'popup-btn', cancelButton: 'popup-btn' }
+    customClass: { confirmButton: "popup-btn", cancelButton: "popup-btn" }
   }).then((result) => {
     if (result.isConfirmed) {
       tarefas.splice(i, 1);
@@ -197,18 +197,15 @@ function removerTarefa(i) {
       listarTarefas();
 
       Swal.fire({
-        title: "💔 Removida!",
-        text: "A tarefa foi apagada.",
+        title: `<span style="color:#5c6773;">A tarefa foi apagada!</span>`,
         icon: "success",
         background: "#fff",
-        color: "#7a3d67",
         confirmButtonColor: "#ff4d94",
-        customClass: { confirmButton: 'popup-btn' }
+        customClass: { confirmButton: "popup-btn" }
       });
     }
   });
 }
-
 
 // --- ENTER ADICIONA ---
 taskInput.addEventListener("keypress", (e) => {
