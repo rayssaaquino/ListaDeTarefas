@@ -9,17 +9,27 @@ document.addEventListener("DOMContentLoaded", () => {
   let interval = null;
   let running = false;
   let primeiraVez = true;
+  let cicloCompleto = false;
 
   const ciclo = [
-    [0.05, "Foco"],
-    [0.05, "Descanso Curto"],
-    [0.05, "Foco"],
-    [0.05, "Descanso Longo"],
-    [0.05, "Foco"]
+    [30, "Foco"],
+    [10, "Descanso Curto"],
+    [30, "Foco"],
+    [10, "Descanso Longo"],
+    [30, "Foco"]
   ];
 
   let etapaAtual = 0;
   let totalSeconds = ciclo[etapaAtual][0] * 60;
+
+  // Som de alerta
+  const alertSound = new Audio("./src/assets/pomodoro/bell.mp3");
+
+  pomodoroStatic.style.display = "block";
+  pomodoroStatic.src = "./src/assets/pomodoro/bunny.png";
+  pomodoroGif.style.display = "none";
+  descansoGif.style.display = "none";
+  timerDisplay.textContent = formatTime(totalSeconds);
 
   function formatTime(seconds) {
     const min = Math.floor(seconds / 60);
@@ -27,13 +37,7 @@ document.addEventListener("DOMContentLoaded", () => {
     return `${String(min).padStart(2,"0")}:${String(sec).padStart(2,"0")}`;
   }
 
-  timerDisplay.textContent = formatTime(totalSeconds);
-  pomodoroStatic.style.display = "block";
-  pomodoroGif.style.display = "none";
-  descansoGif.style.display = "none";
-
-  // Função para mostrar SweetAlert2 estilizado
-  function showSwal(title, messages, callback) {
+  function showSwal(title, messages, callback, tocarSom = true) {
     let htmlContent = "";
     if (Array.isArray(messages)) {
       htmlContent = `<ul style="
@@ -49,6 +53,11 @@ document.addEventListener("DOMContentLoaded", () => {
       htmlContent = `<p style="font-size:16px; color:#5c6773;">${messages}</p>`;
     }
 
+    if (tocarSom) {
+      alertSound.currentTime = 0;
+      alertSound.play();
+    }
+
     Swal.fire({
       title: `<span style="color:#ff4d94;">${title}</span>`,
       html: htmlContent,
@@ -61,20 +70,35 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
+  function atualizarImagens() {
+    if (ciclo[etapaAtual][1].includes("Foco")) {
+      if (running) {
+        pomodoroGif.style.display = "block";
+        pomodoroStatic.style.display = "none";
+        descansoGif.style.display = "none";
+      } else {
+        pomodoroGif.style.display = "none";
+        pomodoroStatic.style.display = "block";
+        pomodoroStatic.src = "./src/assets/pomodoro/bunny.png";
+        descansoGif.style.display = "none";
+      }
+    } else {
+      pomodoroGif.style.display = "none";
+      pomodoroStatic.style.display = "none";
+      descansoGif.style.display = "block";
+
+      if (!running) {
+        descansoGif.src = "./src/assets/pomodoro/sleepy-bunny.png";
+      } else {
+        descansoGif.src = "./src/assets/pomodoro/sleepy-bunny.gif";
+      }
+    }
+  }
+
   function startTimer() {
     running = true;
     startBtn.textContent = "Pausar";
-
-    if (ciclo[etapaAtual][1].includes("Foco")) {
-      pomodoroGif.style.display = "block";
-      descansoGif.style.display = "none";
-      pomodoroStatic.style.display = "none";
-    } else {
-      pomodoroGif.style.display = "none";
-      descansoGif.style.display = "block";
-      pomodoroStatic.style.display = "none";
-    }
-
+    atualizarImagens();
     pomodoroCard.classList.add("started");
 
     interval = setInterval(() => {
@@ -87,16 +111,18 @@ document.addEventListener("DOMContentLoaded", () => {
 
         if (etapaAtual < ciclo.length) {
           const etapa = ciclo[etapaAtual - 1][1];
-          const proxEtapa = ciclo[etapaAtual][1];
 
           showSwal(
-            etapa === "Foco" ? "Fim do bloco de foco!" : "Fim da pausa!",
-            `Agora vem: ${proxEtapa}`,
+            etapa === "Foco" ? "Fim do foco 🌸" : "Fim da pausa ☕",
+            etapa === "Foco" 
+              ? "Hora de relaxar e recarregar as energias."
+              : "Vamos voltar ao foco. Você está indo muito bem!",
             () => {
               totalSeconds = ciclo[etapaAtual][0] * 60;
               timerDisplay.textContent = formatTime(totalSeconds);
               startTimer();
-            }
+            },
+            true
           );
         } else {
           running = false;
@@ -106,12 +132,19 @@ document.addEventListener("DOMContentLoaded", () => {
           pomodoroGif.style.display = "none";
           descansoGif.style.display = "none";
           pomodoroStatic.style.display = "block";
+          pomodoroStatic.src = "./src/assets/pomodoro/bunny.png";
           pomodoroCard.classList.remove("started");
           startBtn.textContent = "Iniciar";
 
+          cicloCompleto = true;
+
           showSwal(
-            "Missão cumprida!",
-            "Cada etapa foi completada com sucesso"
+            "Missão cumprida 🌟", 
+            "Todo seu esforço de hoje valeu a pena. Excelente trabalho!",
+            () => {
+              primeiraVez = true;
+            },
+            true
           );
         }
       }
@@ -124,14 +157,15 @@ document.addEventListener("DOMContentLoaded", () => {
         primeiraVez = false;
 
         showSwal(
-          "Preparação do Pomodoro",
+          "Preparação do Pomodoro 🌸",
           [
-            "Prepare-se para 3 blocos de foco de 30 min cada",
-            "Pausas estratégicas: 10 min a cada bloco de foco",
-            "Tenha água ou sua bebida favorita à mão",
-            "Organize seu ambiente: elimine distrações",
+            "Serão 3 blocos de 30 min de foco.",
+            "Pausas de 10 min para descansar e recuperar as energias.",
+            "Tenha água ou sua bebida favorita à mão.",
+            "Organize seu espaço e sinta-se confortável.",
           ],
-          startTimer
+          startTimer,
+          false 
         );
       } else {
         startTimer();
@@ -140,9 +174,7 @@ document.addEventListener("DOMContentLoaded", () => {
       clearInterval(interval);
       running = false;
       startBtn.textContent = "Continuar";
-      pomodoroGif.style.display = "none";
-      descansoGif.style.display = "none";
-      pomodoroStatic.style.display = "block";
+      atualizarImagens();
     }
   });
 });
