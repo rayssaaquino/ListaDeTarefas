@@ -75,7 +75,7 @@ label {
 }
 
 input[type="text"] {
-    width: calc(100% - 24px);
+    width: calc(100%);
     padding: 12px;
     margin-bottom: 20px;
     border: 2px solid var(--rosa-medio);
@@ -114,14 +114,12 @@ button:hover {
     padding: 12px 22px;
     border-radius: 12px;
     font-weight: 700;
-    text-transform: uppercase;
     letter-spacing: 0.5px;
     border-bottom: 3px solid var(--rosa-escuro);
 }
 
 #main-action-btn:hover {
     background-color: var(--rosa-escuro);
-    border-bottom: 1px solid var(--rosa-escuro);
 }
 
 /* ================= LISTA DE TAREFAS ================= */
@@ -148,7 +146,6 @@ button:hover {
 
 .task-item:hover {
     background-color: var(--rosa-algodao);
-    transform: translateX(5px);
 }
 
 .task-content {

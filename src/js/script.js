@@ -46,7 +46,7 @@ function adicionarTarefa() {
   listarTarefas();
 
   Swal.fire({
-    title: `<span style="#5c6773">Tarefa adicionada!</span>`,
+    title: `<span style="color: #ff4d94">Tarefa adicionada!</span>`,
     icon: "success",
     showConfirmButton: false,
     timer: 1000,
@@ -81,7 +81,7 @@ function salvarTarefa() {
   taskInput.focus();
 
   Swal.fire({
-    title: `<span style="#5c6773">Tarefa atualizada!</span>`,
+    title: `<span style="color: #ff4d94">Tarefa atualizada!</span>`,
     icon: "success",
     showConfirmButton: false,
     timer: 1000,
@@ -148,28 +148,31 @@ function toggleConcluida(i) {
 function verificarTodasConcluidas() {
   if (tarefas.length > 0 && tarefas.every(t => t.concluida)) {
     Swal.fire({
-      title: `<span style="color:#ff4d94;">Parabéns! 🎉</span>`,
-      html: `
-        <div style="
-          display: flex;
-          flex-direction: column;
-          align-items: center;
-          gap: 15px;
-        ">
-          <p style="margin:0; text-align:center; font-size:14px; color:#5c6773;">
-            Você concluiu todas as tarefas da lista
-          </p>
-          <img src="./src/assets/tasks/complete.gif"
-               alt="Tarefas completas"
-               style="width:200px; height:auto; display:block;">
-        </div>
-      `,
-      background: "#fff",
-      confirmButtonColor: "#ff4d94",
-      confirmButtonText: "Que orgulho!"
-    });
+  title: `<span style="color:#ff4d94; font-size:26px;">Parabéns pelo esforço e dedicação!</span>`,
+  html: `
+    <p style="font-size:18px; color:#5c6773;">
+      Pequenas vitórias constroem grandes resultados e você está no caminho certo.
+    </p>
+    <div style="
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 10px;
+      margin-top: 25px;
+    ">
+      <img src="./src/assets/tasks/complete.gif"
+           alt="Tarefas completas"
+           style="width:280px; height:auto; display:block;">
+    </div>
+  `,
+  background: "#fff",
+  confirmButtonColor: "#ff4d94",
+  confirmButtonText: "Ok"
+});
+
   }
 }
+
 
 // --- EDITAR TAREFA ---
 function editarTarefa(i) {
@@ -197,12 +200,13 @@ function removerTarefa(i) {
       listarTarefas();
 
       Swal.fire({
-        title: `<span style="color:#5c6773;">A tarefa foi apagada!</span>`,
+        title: `<span style="color: #ff4d94;">A tarefa foi apagada!</span>`,
         icon: "success",
         background: "#fff",
-        confirmButtonColor: "#ff4d94",
-        customClass: { confirmButton: "popup-btn" }
-      });
+        showConfirmButton: false, // <--- aqui tiramos o botão
+        timer: 1000 // opcional, fecha automaticamente após 1,5s
+});
+
     }
   });
 }
