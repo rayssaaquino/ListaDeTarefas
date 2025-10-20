@@ -6,6 +6,7 @@ const taskInput = document.getElementById("task");
 const listaElement = document.getElementById("lista");
 const mainActionBtn = document.getElementById("main-action-btn");
 
+
 // --- LOCAL STORAGE ---
 function carregarTarefas() {
   const saved = localStorage.getItem("tarefasCuteList");
@@ -104,7 +105,10 @@ function listarTarefas() {
   listaElement.innerHTML = tarefas
     .map((tarefa, i) => {
       const completedClass = tarefa.concluida ? "completed" : "";
-      const icon = "🩷";
+      const icon = tarefa.concluida
+        ? `<img src="./src/assets/tasks/checkmark-done.png" alt="Concluída" style="width:22px; height:22px; vertical-align:middle; margin-right:6px;">`
+        : `<img src="./src/assets/tasks/icons.png" alt="Pendente" style="width:20px; height:20px; vertical-align:middle; margin-right:6px;">`;
+
       return `
         <div class="task-item ${completedClass}" data-index="${i}">
           <div class="task-content">${icon} ${tarefa.texto}</div>

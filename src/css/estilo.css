@@ -4,7 +4,7 @@
     --rosa-claro: #ffe0ef;         /* Containers / Cards */
     --rosa-medio: #ff99c2;         /* Botões e detalhes principais */
     --rosa-escuro: #ff4d94;        /* Destaques / Ação forte */
-    --rosa-branco: #ffffff;         /* Branco para botões e cards */
+    --rosa-branco: #ffffff;        /* Branco para botões e cards */
     --cinza-texto: #5c6773;        /* Texto secundário */
     --sombra-fofa: 0 6px 18px rgba(255, 153, 194, 0.4);
     --sombra-leve: 0 2px 4px rgba(0, 0, 0, 0.05);
@@ -21,10 +21,8 @@
 
 html, body {
     height: 100%;
-    margin: 0;
-    padding: 0;
     overflow-x: hidden;
-    overflow-y: auto;
+    overflow-y: auto; 
 }
 
 body {
@@ -35,35 +33,52 @@ body {
 
 /* ================= LAYOUT PRINCIPAL ================= */
 main {
-    max-width: 1200px;
-    margin: 40px auto;
-    padding: 0 20px;
-}
-
-.layout {
     display: flex;
-    justify-content: center;
-    align-items: flex-start;
-    gap: 40px;
-    flex-wrap: wrap;
+    justify-content: center; 
+    gap: 20px;
+    max-width: 1200px;
+    margin: 20px auto;
+    padding: 0 20px;
+    min-height: calc(100vh - 40px);
+    box-sizing: border-box;
 }
 
-/* ================= COLUNA ESQUERDA ================= */
+/* Coluna esquerda fixa */
 .left-column {
     display: flex;
     flex-direction: column;
-    gap: 30px;
+    gap: 25px;
+    position: sticky;
+    top: 20px;
+    align-self: flex-start;
+}
+
+/* Conteúdo principal rolável */
+.main-content {
+    flex: 1;
+    display: flex;
+    justify-content: center; 
+    flex-wrap: wrap;         
 }
 
 /* ================= COLUNA TAREFAS ================= */
 .tarefas {
     width: 600px;
-    background-color: white;
+    min-height: 685px;
+    max-width: 100%;          
+    background-color: var(--rosa-branco);
     padding: 35px;
     border-radius: 20px;
     box-shadow: var(--sombra-fofa);
     display: flex;
     flex-direction: column;
+    margin-bottom: 20px;      
+}
+
+
+.main-content {
+    margin-left: 290px; 
+    flex: 1;
 }
 
 /* ================= FORMULÁRIO ================= */
@@ -75,7 +90,7 @@ label {
 }
 
 input[type="text"] {
-    width: calc(100%);
+    width: 100%;
     padding: 12px;
     margin-bottom: 20px;
     border: 2px solid var(--rosa-medio);
@@ -109,10 +124,7 @@ button:hover {
 }
 
 #main-action-btn {
-    background-color: var(--rosa-medio);
-    color: var(--rosa-branco);
     padding: 12px 22px;
-    border-radius: 12px;
     font-weight: 700;
     letter-spacing: 0.5px;
     border-bottom: 3px solid var(--rosa-escuro);
@@ -138,8 +150,8 @@ button:hover {
     padding: 15px 18px;
     border-radius: 12px;
     display: flex;
-    justify-content: space-between;
-    align-items: center;
+    justify-content: space-between; /* mantém botões à direita */
+    align-items: center;            /* centraliza verticalmente o conteúdo */
     transition: all 0.3s ease, transform 0.2s ease;
     box-shadow: var(--sombra-leve);
 }
@@ -148,29 +160,30 @@ button:hover {
     background-color: var(--rosa-algodao);
 }
 
+/* Tarefas concluídas */
+.task-item.completed {
+    background-color: var(--rosa-concluido);
+}
+
 .task-content {
     flex-grow: 1;
     font-size: 1.05em;
     color: var(--cinza-texto);
     word-wrap: break-word;
     margin-right: 20px;
-}
-
-.task-item.completed {
-    background-color: var(--rosa-concluido);
-    border-left-color: var(--rosa-escuro);
-}
-
-.task-item.completed .task-content {
-    text-decoration: line-through 2px var(--rosa-escuro);
-    color: #d47ab9;
+    white-space: pre-wrap; /* mantém quebras de linha */
+    line-height: 1.5;
+    display: flex;
+    align-items: center; /* garante que o ícone e texto fiquem alinhados verticalmente */
+    gap: px;            /* espaço entre ícone/imagem e texto */
 }
 
 /* ================= BOTÕES DAS TAREFAS ================= */
 .task-buttons {
     display: flex;
     gap: 8px;
-    flex-shrink: 0;
+    flex-shrink: 0;       /* mantém tamanho fixo dos botões */
+    align-items: flex-start;
 }
 
 .task-buttons button {

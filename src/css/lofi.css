@@ -1,7 +1,7 @@
 /* ================== CARD PRINCIPAL ================== */
 .lofi-card {
     width: 280px;
-    height: 300px;
+    height: 330px;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -127,47 +127,57 @@
 }
 
 /* ================== BOTÕES DE MÚSICA ================== */
-/* ================== BOTÕES DE MÚSICA FOFO/MODERNO ================== */
-.lofi-music-btn {
-    background-color: #fff; /* fundo branco */
-    border: 2px solid #ff99c2;
-    border-radius: 12px;
-    font-size: 22px;
-    cursor: pointer;
-    color: #ff69b4;
-    font-weight: 600;
-    padding: 8px 14px;
-    box-shadow: 
-        inset 0 2px 4px rgba(255, 182, 193, 0.3), /* sombra interna suave */
-        0 5px 8px rgba(255, 182, 193, 0.3);      /* sombra externa */
-    transition: all 0.25s ease, box-shadow 0.3s ease;
+/* Container dos botões */
+.lofi-options {
+    display: flex;               
+    flex-direction: row;
+    gap: 10px;                   
+    align-items: center;         
+    justify-content: flex-start; 
+    flex-wrap: wrap;             
 }
 
-/* Hover - efeito leve de destaque e elevação */
+/* Botões de música quadrados e minimalistas */
+.lofi-music-btn {
+    background: linear-gradient(145deg, #ffe6f0, #ffd6e8);
+    border: 2px solid #ff99c2;
+    border-radius: 12px;        /* cantos levemente arredondados */
+    font-size: 16px;
+    font-weight: 600;
+    color: #ff4d94;
+    cursor: pointer;
+    transition: all 0.25s ease;
+    box-shadow: 0 3px 5px rgba(255, 182, 193, 0.3);
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 50px;    /* largura quadrada */
+    height: 50px;   /* altura igual à largura */
+    text-align: center;
+    padding: 0;     /* remove padding extra */
+}
+
+/* Hover - efeito leve de destaque */
 .lofi-music-btn:hover {
-    transform: translateY(-3px);
-    box-shadow: 
-        inset 0 2px 4px rgba(255, 182, 193, 0.3),
-        0 7px 12px rgba(255, 105, 180, 0.4);
-    background-color: #fff;
+    transform: translateY(-2px);
+    box-shadow: 0 5px 8px rgba(255, 182, 193, 0.35);
+    background: linear-gradient(145deg, #ffd6e8, #ffe6f0);
 }
 
 /* Click - efeito pressionado */
 .lofi-music-btn:active {
     transform: translateY(1px);
-    box-shadow: 
-        inset 0 1px 3px rgba(255, 182, 193, 0.3),
-        0 3px 5px rgba(255, 105, 180, 0.3);
+    box-shadow: 0 2px 4px rgba(255, 182, 193, 0.2);
 }
 
 /* Botão ativo (música selecionada) */
 .lofi-music-btn.active {
-    transform: scale(1.06);
-    color: #ff4d94; /* texto mais intenso */
-    box-shadow: 
-        inset 0 2px 5px rgba(255, 182, 193, 0.4),
-        0 6px 12px rgba(255, 105, 180, 0.6), 
-        0 0 10px rgba(255, 105, 180, 0.5); /* glow suave */
+    transform: scale(1.04);
+    color: #ff1a75;
+    background: linear-gradient(145deg, #ffb3d9, #ff66b3);
+    box-shadow: 0 5px 10px rgba(255, 105, 180, 0.5);
 }
 
 

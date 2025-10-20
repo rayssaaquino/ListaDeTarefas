@@ -11,6 +11,9 @@ document.addEventListener("DOMContentLoaded", () => {
     return;
   }
 
+  // ================== ATIVA LOOP INFINITO ==================
+  lofiAudio.loop = true;
+
   // ================== CONFIG DO SLIDER ==================
   volumeSlider.type = "range";
   volumeSlider.min = 0;
@@ -29,7 +32,6 @@ document.addEventListener("DOMContentLoaded", () => {
   volumeContainer.appendChild(volumeEmoji);
   volumeContainer.appendChild(volumeSlider);
 
-  // tenta inserir o container de volume antes das opções (se existir)
   const optionsEl = lofiCard ? lofiCard.querySelector(".lofi-options") : null;
   if (lofiCard && optionsEl) {
     lofiCard.insertBefore(volumeContainer, optionsEl);
@@ -42,17 +44,15 @@ document.addEventListener("DOMContentLoaded", () => {
   // ================== VARIÁVEIS ==================
   let tocando = false;
   let musicaAtual = "./src/assets/music/lofi1.mp3";
-  let hasStarted = false; // flag: o usuário já apertou play pelo menos uma vez
+  let hasStarted = false; // usuário já apertou play pelo menos uma vez
 
-  // ================== ESTILIZAÇÃO RÁPIDA (garante posição do wrapper) ==================
-  const wrapper = lofiCover.parentElement; // pai direto da capa
+  // ================== ESTILIZAÇÃO RÁPIDA ==================
+  const wrapper = lofiCover.parentElement;
   if (wrapper) {
-    // garante que o pai tenha position relative pra posicionar o botão sobre a imagem
     const style = window.getComputedStyle(wrapper).position;
     if (style === "static") wrapper.style.position = "relative";
   }
 
-  // forçar estilos iniciais do botão (caso não estejam no CSS)
   lofiImgBtn.style.position = "absolute";
   lofiImgBtn.style.left = "50%";
   lofiImgBtn.style.top = "50%";
@@ -106,7 +106,7 @@ document.addEventListener("DOMContentLoaded", () => {
         // pausa automaticamente, usuário precisa iniciar
         lofiAudio.pause();
         tocando = false;
-        hasStarted = false; // reset pra que o botão fique visível até o usuário iniciar novamente
+        hasStarted = false;
         lofiImgBtn.textContent = "▶";
         lofiImgBtn.style.opacity = "1";
         lofiImgBtn.style.pointerEvents = "auto";
@@ -132,31 +132,26 @@ document.addEventListener("DOMContentLoaded", () => {
   lofiAudio.addEventListener("ended", () => {
     tocando = false;
     lofiImgBtn.textContent = "▶";
-    // quando termina, deixamos o botão visível (usuário pode tocar novamente)
     lofiImgBtn.style.opacity = "1";
     lofiImgBtn.style.pointerEvents = "auto";
-    console.log("Áudio terminou — botão visível");
+    console.log("Áudio terminou — botão visível (loop está ativo, reinicia sozinho)");
   });
 
-  // ================== APARECER/DESAPARECER BOTÃO (USANDO WRAPPER) ==================
-  // fallback se não tiver wrapper, usa a capa
+  // ================== APARECER/DESAPARECER BOTÃO ==================
   const hoverTarget = wrapper || lofiCover;
 
   hoverTarget.addEventListener("mouseenter", () => {
-    // sempre mostra quando o mouse entra
     lofiImgBtn.style.opacity = "1";
     lofiImgBtn.style.pointerEvents = "auto";
     console.log("mouseenter -> mostrar botão");
   });
 
   hoverTarget.addEventListener("mouseleave", () => {
-    // só esconde quando o usuário já iniciou a reprodução
     if (hasStarted) {
       lofiImgBtn.style.opacity = "0";
       lofiImgBtn.style.pointerEvents = "none";
       console.log("mouseleave -> esconder botão (já começou)");
     } else {
-      // se não começou ainda, mantém visível (facilita o click depois)
       lofiImgBtn.style.opacity = "1";
       lofiImgBtn.style.pointerEvents = "auto";
       console.log("mouseleave -> não esconder (ainda não começou)");
@@ -167,6 +162,5 @@ document.addEventListener("DOMContentLoaded", () => {
   lofiImgBtn.style.opacity = "1";
   lofiImgBtn.style.pointerEvents = "auto";
 
-  // logs úteis pra debug rápido
   console.log("Script de player carregado. hasStarted:", hasStarted, "tocando:", tocando);
 });
