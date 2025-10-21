@@ -44,7 +44,7 @@ document.addEventListener("DOMContentLoaded", () => {
   // ================== VARIÁVEIS ==================
   let tocando = false;
   let musicaAtual = "./src/assets/music/lofi1.mp3";
-  let hasStarted = false; // usuário já apertou play pelo menos uma vez
+  let hasStarted = false;
 
   // ================== ESTILIZAÇÃO RÁPIDA ==================
   const wrapper = lofiCover.parentElement;
@@ -161,6 +161,30 @@ document.addEventListener("DOMContentLoaded", () => {
   // garantia: botão visível no início
   lofiImgBtn.style.opacity = "1";
   lofiImgBtn.style.pointerEvents = "auto";
+
+  // ================== CONFIGURAR PRIMEIRA MÚSICA ==================
+  const primeiroBtn = musicBtns[0];
+  if (primeiroBtn) {
+    primeiroBtn.classList.add("active");
+    musicaAtual = primeiroBtn.getAttribute("data-src");
+    const capa = primeiroBtn.getAttribute("data-img");
+    if (capa) lofiCover.src = capa;
+    lofiAudio.src = musicaAtual;
+
+    // tocar só quando o usuário clicar no primeiro botão
+    primeiroBtn.addEventListener("click", () => {
+      if (!hasStarted) {
+        lofiAudio.play().then(() => {
+          tocando = true;
+          hasStarted = true;
+          lofiImgBtn.textContent = "❚❚";
+          console.log("Primeira música tocando após clicar no botão");
+        }).catch(err => {
+          console.warn("Erro ao tentar tocar:", err);
+        });
+      }
+    });
+  }
 
   console.log("Script de player carregado. hasStarted:", hasStarted, "tocando:", tocando);
 });

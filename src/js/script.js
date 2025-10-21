@@ -107,7 +107,7 @@ function listarTarefas() {
       const completedClass = tarefa.concluida ? "completed" : "";
       const icon = tarefa.concluida
         ? `<img src="./src/assets/tasks/checkmark-done.png" alt="Concluída" style="width:22px; height:22px; vertical-align:middle; margin-right:6px;">`
-        : `<img src="./src/assets/tasks/icons.png" alt="Pendente" style="width:20px; height:20px; vertical-align:middle; margin-right:6px;">`;
+        : `<img src="./src/assets/tasks/checkmark.png" alt="Pendente" style="width:20px; height:20px; vertical-align:middle; margin-right:6px;">`;
 
       return `
         <div class="task-item ${completedClass}" data-index="${i}">

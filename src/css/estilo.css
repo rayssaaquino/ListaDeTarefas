@@ -75,7 +75,6 @@ main {
     margin-bottom: 20px;      
 }
 
-
 .main-content {
     margin-left: 290px; 
     flex: 1;
@@ -134,7 +133,8 @@ button:hover {
     background-color: var(--rosa-escuro);
 }
 
-/* ================= LISTA DE TAREFAS ================= */
+/*LISTA */
+
 #lista {
     margin-top: 30px;
     display: flex;
@@ -143,47 +143,56 @@ button:hover {
     width: 100%;
 }
 
+/* card da task */
 .task-item {
     background-color: var(--rosa-branco);
     border: 2px solid var(--rosa-claro);
-    border-left: 6px solid var(--rosa-medio);
-    padding: 15px 18px;
-    border-radius: 12px;
+    border-left: 6px solid var(--rosa-medio); /* linha vertical em rosa-escuro */
+    border-radius: 10px;
+    padding: 14px 16px;
     display: flex;
-    justify-content: space-between; /* mantém botões à direita */
-    align-items: center;            /* centraliza verticalmente o conteúdo */
-    transition: all 0.3s ease, transform 0.2s ease;
-    box-shadow: var(--sombra-leve);
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 10px;
+    word-break: break-word;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.04);
+    box-sizing: border-box;
 }
 
-.task-item:hover {
-    background-color: var(--rosa-algodao);
-}
-
-/* Tarefas concluídas */
-.task-item.completed {
-    background-color: var(--rosa-concluido);
-}
-
+/* CONTEÚDO (imagem + texto) lado a lado */
 .task-content {
-    flex-grow: 1;
-    font-size: 1.05em;
-    color: var(--cinza-texto);
-    word-wrap: break-word;
-    margin-right: 20px;
-    white-space: pre-wrap; /* mantém quebras de linha */
-    line-height: 1.5;
     display: flex;
-    align-items: center; /* garante que o ícone e texto fiquem alinhados verticalmente */
-    gap: px;            /* espaço entre ícone/imagem e texto */
+    align-items: flex-start;
+    gap: 10px;
+    width: 100%;
 }
 
+.task-icon {
+    width: 28px;    /* coincide com o que você já usava */
+    height: 28px;
+    flex-shrink: 0;
+    margin-top: 3px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.task-text {
+    flex: 1;
+    font-size: 1.05em;
+    line-height: 1.5;
+    color: var(--cinza-texto);
+    overflow-wrap: anywhere;
+    word-break: break-word;
+    white-space: normal;
+}
 /* ================= BOTÕES DAS TAREFAS ================= */
 .task-buttons {
     display: flex;
     gap: 8px;
-    flex-shrink: 0;       /* mantém tamanho fixo dos botões */
-    align-items: flex-start;
+    justify-content: flex-end;
+    width: 100%;
+    margin-top: 8px;
 }
 
 .task-buttons button {
@@ -214,10 +223,91 @@ button:hover {
 }
 
 /* ================= RESPONSIVIDADE ================= */
+
+/* Tablets e telas médias */
 @media (max-width: 1024px) {
-    main { padding: 20px 10px; }
+    main {
+        flex-direction: column;
+        align-items: center;
+        padding: 20px 15px;
+    }
+
+    .left-column {
+        position: relative;
+        top: auto;
+        width: 100%;
+        align-items: center;
+    }
+
+    .main-content {
+        margin-left: 0;
+        width: 100%;
+        justify-content: center;
+    }
+
+    .tarefas {
+        width: 95%;
+        min-height: auto;
+        padding: 25px;
+    }
+
+    .left-column .card {
+        flex: 1 1 100%;
+        max-width: 100%;
+        margin: 0 auto;
+    }
 }
 
-@media (max-width: 768px) {
-    .tarefas { width: 90%; margin-bottom: 20px; }
+/* Celulares e telas pequenas */
+@media (max-width: 480px) {
+    body {
+        font-size: 0.95em;
+    }
+
+    .tarefas {
+        padding: 20px;
+        border-radius: 16px;
+        width: 95%;
+    }
+
+    .task-item {
+        flex-direction: column;
+    }
+
+    .task-header {
+        align-items: flex-start;
+    }
+
+    .task-buttons {
+        margin-top: 10px;
+        justify-content: flex-start;
+    }
+
+    button {
+        padding: 8px 12px;
+        font-size: 0.9em;
+    }
+
+    .left-column .card {
+        flex: 1 1 100%;
+        max-width: 100%;
+        margin: 0 auto;
+    }
+}
+
+/* Ajuste fino para telas muito pequenas */
+@media (max-width: 360px) {
+    .task-content {
+        font-size: 0.95em;
+    }
+
+    input[type="text"] {
+        padding: 10px;
+        font-size: 0.95em;
+    }
+
+    button {
+        padding: 6px 10px;
+        font-size: 0.85em;
+    }
 }

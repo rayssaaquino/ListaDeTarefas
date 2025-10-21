@@ -34,10 +34,10 @@
       </div>
 
       <div class="lofi-options">
-        <button class="lofi-music-btn active" data-src="./src/assets/music/lofi.mp3" data-img="./src/assets/music/lofi.jpg">🌆</button>
-        <button class="lofi-music-btn" data-src="./src/assets/music/study.mp3" data-img="./src/assets/music/study.png"></button>
-        <button class="lofi-music-btn" data-src="./src/assets/music/birds.mp3" data-img="./src/assets/music/birds.jpg">🌿</button>
-        <button class="lofi-music-btn" data-src="./src/assets/music/rain.mp3" data-img="./src/assets/music/rain.png"></button>
+        <button class="lofi-music-btn active" data-src="./src/assets/music/lofi.mp3" data-img="./src/assets/music/lofi.jpg">🩷</button>
+        <button class="lofi-music-btn" data-src="./src/assets/music/study.mp3" data-img="./src/assets/music/study.png">🤎</button>
+        <button class="lofi-music-btn" data-src="./src/assets/music/birds.mp3" data-img="./src/assets/music/birds.jpg">💚</button>
+        <button class="lofi-music-btn" data-src="./src/assets/music/rain.mp3" data-img="./src/assets/music/rain.png">💙</button>
       </div>
 
       <audio id="lofi-audio" loop>
@@ -54,11 +54,27 @@
     <label for="task">Tarefa:</label>
     <input type="text" id="task" />
     <button id="main-action-btn" onclick="mainAction()">Adicionar Tarefa</button>
-    <div id="lista"></div> 
+
+    <div id="lista">
+      <!-- Exemplo de task -->
+      <div class="task-item">
+        <div class="task-row">
+          <div class="task-content">
+            <img class="task-icon" src="./src/assets/icons/task.png" alt="ícone">
+            <div class="task-text">Tarefa curta ou longa que se ajusta automaticamente ao tamanho do card.</div>
+          </div>
+          <div class="task-buttons">
+            <button>✔</button>
+            <button>✏️</button>
+            <button>🗑️</button>
+          </div>
+        </div>
+      </div>
+      <!-- Novas tarefas serão adicionadas aqui via JS -->
+    </div> 
   </section>
 
 </main>
-
 
 <script src="./src/js/script.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
@@ -67,4 +83,3 @@
 
 </body>
 </html>
-
