@@ -1,17 +1,19 @@
 /* ================= PALETA DE CORES ================= */
+
 :root {
-    --rosa-algodao: #fff0f6;       /* Fundo principal */
-    --rosa-claro: #ffe0ef;         /* Containers / Cards */
-    --rosa-medio: #ff99c2;         /* Botões e detalhes principais */
-    --rosa-escuro: #ff4d94;        /* Destaques / Ação forte */
-    --rosa-branco: #ffffff;        /* Branco para botões e cards */
-    --cinza-texto: #5c6773;        /* Texto secundário */
+    --rosa-algodao: #fff0f6;       
+    --rosa-claro: #ffe0ef;      
+    --rosa-medio: #ff99c2;        
+    --rosa-escuro: #ff4d94;        
+    --rosa-branco: #ffffff;        
+    --cinza-texto: #5c6773;       
     --sombra-fofa: 0 6px 18px rgba(255, 153, 194, 0.4);
     --sombra-leve: 0 2px 4px rgba(0, 0, 0, 0.05);
-    --rosa-concluido: #ffd6e8;     /* Destaque para tarefas concluídas */
+    --rosa-concluido: #ffd6e8;     
 }
 
 /* ================= ESTILO BASE ================= */
+
 * {
     margin: 0;
     padding: 0;
@@ -32,6 +34,7 @@ body {
 }
 
 /* ================= LAYOUT PRINCIPAL ================= */
+
 main {
     display: flex;
     justify-content: center; 
@@ -43,7 +46,6 @@ main {
     box-sizing: border-box;
 }
 
-/* Coluna esquerda fixa */
 .left-column {
     display: flex;
     flex-direction: column;
@@ -53,7 +55,6 @@ main {
     align-self: flex-start;
 }
 
-/* Conteúdo principal rolável */
 .main-content {
     flex: 1;
     display: flex;
@@ -62,6 +63,7 @@ main {
 }
 
 /* ================= COLUNA TAREFAS ================= */
+
 .tarefas {
     width: 600px;
     min-height: 685px;
@@ -81,6 +83,7 @@ main {
 }
 
 /* ================= FORMULÁRIO ================= */
+
 label {
     font-weight: 700;
     display: block;
@@ -106,6 +109,7 @@ input[type="text"]:focus {
 }
 
 /* ================= BOTÕES GERAIS ================= */
+
 button {
     border: none;
     cursor: pointer;
@@ -133,8 +137,6 @@ button:hover {
     background-color: var(--rosa-escuro);
 }
 
-/*LISTA */
-
 #lista {
     margin-top: 30px;
     display: flex;
@@ -143,7 +145,7 @@ button:hover {
     width: 100%;
 }
 
-/* card da task */
+
 .task-item {
     background-color: var(--rosa-branco);
     border: 2px solid var(--rosa-claro);
@@ -160,7 +162,6 @@ button:hover {
     box-sizing: border-box;
 }
 
-/* CONTEÚDO (imagem + texto) lado a lado */
 .task-content {
     display: flex;
     align-items: flex-start;
@@ -169,7 +170,7 @@ button:hover {
 }
 
 .task-icon {
-    width: 28px;    /* coincide com o que você já usava */
+    width: 28px;    
     height: 28px;
     flex-shrink: 0;
     margin-top: 3px;
@@ -186,7 +187,9 @@ button:hover {
     word-break: break-word;
     white-space: normal;
 }
+
 /* ================= BOTÕES DAS TAREFAS ================= */
+
 .task-buttons {
     display: flex;
     gap: 8px;
@@ -210,6 +213,7 @@ button:hover {
 }
 
 /* ================= POPUP ================= */
+
 .swal2-actions {
     display: flex;
     gap: 12px;

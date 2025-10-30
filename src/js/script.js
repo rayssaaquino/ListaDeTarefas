@@ -1,4 +1,5 @@
 // --- VARIÁVEIS E ELEMENTOS ---
+
 let tarefas = [];
 let indiceEditar = -1;
 
@@ -6,8 +7,8 @@ const taskInput = document.getElementById("task");
 const listaElement = document.getElementById("lista");
 const mainActionBtn = document.getElementById("main-action-btn");
 
-
 // --- LOCAL STORAGE ---
+
 function carregarTarefas() {
   const saved = localStorage.getItem("tarefasCuteList");
   if (saved) tarefas = JSON.parse(saved);
@@ -19,6 +20,7 @@ function salvarNoLocalStorage() {
 }
 
 // --- FUNÇÃO UNIFICADA PARA BOTÃO ---
+
 function mainAction() {
   if (indiceEditar === -1) {
     adicionarTarefa();
@@ -28,6 +30,7 @@ function mainAction() {
 }
 
 // --- ADICIONAR TAREFA ---
+
 function adicionarTarefa() {
   const texto = taskInput.value.trim();
   if (!texto) {
@@ -59,6 +62,7 @@ function adicionarTarefa() {
 }
 
 // --- SALVAR TAREFA EDITADA ---
+
 function salvarTarefa() {
   const texto = taskInput.value.trim();
   if (!texto) {
@@ -89,10 +93,11 @@ function salvarTarefa() {
     background: "#fff"
   });
 
-  mainActionBtn.textContent = "Adicionar Tarefa"; // volta o texto do botão
+  mainActionBtn.textContent = "Adicionar Tarefa"; 
 }
 
 // --- LISTAR TAREFAS ---
+
 function listarTarefas() {
   if (tarefas.length === 0) {
     listaElement.innerHTML = `
@@ -126,6 +131,7 @@ function listarTarefas() {
 }
 
 // --- CONCLUIR / DESFAZER ---
+
 function toggleConcluida(i) {
   const tarefa = tarefas[i];
   tarefa.concluida = !tarefa.concluida;
@@ -149,6 +155,7 @@ function toggleConcluida(i) {
 }
 
 // --- VERIFICAR TODAS CONCLUIDAS ---
+
 function verificarTodasConcluidas() {
   if (tarefas.length > 0 && tarefas.every(t => t.concluida)) {
     Swal.fire({
@@ -177,16 +184,17 @@ function verificarTodasConcluidas() {
   }
 }
 
-
 // --- EDITAR TAREFA ---
+
 function editarTarefa(i) {
   indiceEditar = i;
   taskInput.value = tarefas[i].texto;
   taskInput.focus();
-  mainActionBtn.textContent = "Salvar Tarefa"; // muda texto do botão
+  mainActionBtn.textContent = "Salvar Tarefa"; 
 }
 
 // --- REMOVER TAREFA ---
+
 function removerTarefa(i) {
   Swal.fire({
     title: `<span style="color:#ff4d94;">Remover esta tarefa?</span>`,
@@ -207,8 +215,8 @@ function removerTarefa(i) {
         title: `<span style="color: #ff4d94;">A tarefa foi apagada!</span>`,
         icon: "success",
         background: "#fff",
-        showConfirmButton: false, // <--- aqui tiramos o botão
-        timer: 1000 // opcional, fecha automaticamente após 1,5s
+        showConfirmButton: false, 
+        timer: 1000 
 });
 
     }
@@ -216,9 +224,11 @@ function removerTarefa(i) {
 }
 
 // --- ENTER ADICIONA ---
+
 taskInput.addEventListener("keypress", (e) => {
   if (e.key === "Enter") mainAction();
 });
 
 // --- INICIALIZA ---
+
 document.addEventListener("DOMContentLoaded", carregarTarefas);

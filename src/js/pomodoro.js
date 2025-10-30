@@ -22,7 +22,6 @@ document.addEventListener("DOMContentLoaded", () => {
   let etapaAtual = 0;
   let totalSeconds = ciclo[etapaAtual][0] * 60;
 
-  // Som de alerta
   const alertSound = new Audio("./src/assets/pomodoro/bell.mp3");
 
   pomodoroStatic.style.display = "block";

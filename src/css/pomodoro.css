@@ -1,6 +1,7 @@
+/* ================== CARD POMODORO ================== */
 .pomodoro-card {
     width: 280px;
-    height: 330px; /* altura fixa */
+    height: 330px; 
     background-color: var(--rosa-branco);
     padding: 15px;
     border-radius: 20px;
@@ -8,13 +9,13 @@
     text-align: center;
     display: flex;
     flex-direction: column;
-    justify-content: flex-start; /* começa do topo */
+    justify-content: flex-start; 
     align-items: center;
     position: relative;
-    gap: 5px; /* menor gap para aproximar elementos */
+    gap: 5px; 
 }
 
-/* Timer */
+/* ================== TIMER ================== */
 #timer {
     font-size: 3em;
     font-weight: 700;
@@ -23,9 +24,10 @@
     margin: 0;
 }
 
+/* ================== IMAGENS ================== */
 .pomodoro-img,
 #pomodoro-static {
-    width: 138px;  /* imagem estática menor */
+    width: 138px;  
     height: 138px;
     margin: -5px 0 5px 0;
     margin-top: 5px;
@@ -35,21 +37,20 @@
 }
 
 .pomodoro-gif {
-    width: 145px;  /* GIF um pouco maior */
+    width: 145px;  
     height: 145px;
     margin: -5px 0 5px 0;
     margin-top: 5px;
-    display: none; /* inicia escondido */
+    display: none; 
     flex-shrink: 0;
     object-fit: contain;
 }
 
-/* GIF inicia escondido */
 #pomodoro-gif {
     display: none;
 }
 
-/* Botão sempre no mesmo lugar */
+/* ================== BOTÃO START ================== */
 #start {
     width: 80%;
     padding: 10px 0;
@@ -58,7 +59,7 @@
     background-color: var(--rosa-medio);
     border-bottom: 3px solid var(--rosa-escuro);
     cursor: pointer;
-    margin-top: auto; /* mantém no final do card */
+    margin-top: auto;
     transition: all 0.3s ease;
 }
 
@@ -67,7 +68,7 @@
     transform: scale(1.03);
 }
 
-/* Estado iniciado */
+/* ================== ESTADOS DO CARD ================== */
 .pomodoro-card.started #timer {
     font-size: 3em;
 }
@@ -80,8 +81,7 @@
     display: none;
 }
 
-
-/* Overlay do popup */
+/* ================== POPUP OVERLAY ================== */
 .popup-overlay {
   display: none;
   position: fixed;
@@ -92,24 +92,24 @@
   pointer-events: none;
 }
 
-/* Caixa do popup */
+/* ================== POPUP BOX ================== */
 .popup-box {
   pointer-events: auto;
   background-color: #fff0f6;
   color: #7a3d67;
   padding: 30px 35px;
   border-radius: 20px;
-  text-align: left; /* texto alinhado à esquerda */
+  text-align: left; 
   box-shadow: 0 8px 20px rgba(0,0,0,0.25);
   max-width: 350px;
   animation: popupFade 0.3s ease-in-out;
   font-family: 'Poppins', sans-serif;
   display: flex;
   flex-direction: column;
-  gap: 10px; /* espaço entre linhas */
+  gap: 10px; 
 }
 
-/* Título centralizado */
+/* ================== POPUP BOX TEXTO ================== */
 .popup-box h2 {
   font-size: 1.5em;
   margin-bottom: 10px;
@@ -117,16 +117,15 @@
   text-align: center;
 }
 
-/* Texto de instruções */
 .popup-box p {
   font-size: 1em;
   line-height: 1.5;
   margin: 0;
 }
 
-/* Botão centralizado */
+/* ================== POPUP BOX BOTÃO ================== */
 .popup-box button {
-  margin: 15px auto 0 auto; /* centraliza horizontalmente */
+  margin: 15px auto 0 auto; 
   padding: 10px 20px;
   background-color: #f4c2e0;
   color: #7a3d67;
@@ -142,7 +141,7 @@
   transform: scale(1.05);
 }
 
-/* Animação do popup */
+/* ================== ANIMAÇÃO POPUP ================== */
 @keyframes popupFade {
   from { opacity: 0; transform: scale(0.8); }
   to { opacity: 1; transform: scale(1); }

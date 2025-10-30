@@ -1,5 +1,7 @@
 document.addEventListener("DOMContentLoaded", () => {
+
   // ================== ELEMENTOS ==================
+
   const lofiAudio = document.getElementById("lofi-audio");
   const lofiImgBtn = document.getElementById("lofi-img-btn");
   const lofiCover = document.getElementById("lofi-cover");
@@ -11,10 +13,12 @@ document.addEventListener("DOMContentLoaded", () => {
     return;
   }
 
-  // ================== ATIVA LOOP INFINITO ==================
+  // ================== LOOP INFINITO ==================
+
   lofiAudio.loop = true;
 
   // ================== CONFIG DO SLIDER ==================
+
   volumeSlider.type = "range";
   volumeSlider.min = 0;
   volumeSlider.max = 100;
@@ -42,11 +46,13 @@ document.addEventListener("DOMContentLoaded", () => {
   lofiAudio.volume = volumeSlider.value / 100;
 
   // ================== VARIÁVEIS ==================
+
   let tocando = false;
-  let musicaAtual = "./src/assets/music/lofi1.mp3";
+  let musicaAtual = null; 
   let hasStarted = false;
 
   // ================== ESTILIZAÇÃO RÁPIDA ==================
+
   const wrapper = lofiCover.parentElement;
   if (wrapper) {
     const style = window.getComputedStyle(wrapper).position;
@@ -65,12 +71,14 @@ document.addEventListener("DOMContentLoaded", () => {
   lofiImgBtn.style.cursor = "pointer";
 
   // ================== FUNÇÃO TOGGLE PLAY/PAUSE ==================
+
   function toggleLofi() {
     if (!tocando) {
+      if (!musicaAtual) return console.log("Nenhuma música selecionada");
       lofiAudio.play().then(() => {
         tocando = true;
         hasStarted = true;
-        lofiImgBtn.textContent = "❚❚"; // pause
+        lofiImgBtn.textContent = "❚❚"; 
         console.log("Reproduzindo — hasStarted true");
       }).catch(err => {
         console.warn("Erro ao tentar tocar o áudio:", err);
@@ -78,18 +86,20 @@ document.addEventListener("DOMContentLoaded", () => {
     } else {
       lofiAudio.pause();
       tocando = false;
-      lofiImgBtn.textContent = "▶"; // play
+      lofiImgBtn.textContent = "▶"; 
       console.log("Pausado");
     }
   }
 
   // ================== EVENTO DO PLAYER ==================
+
   lofiImgBtn.addEventListener("click", (e) => {
     e.stopPropagation();
     toggleLofi();
   });
 
   // ================== TROCA DE MÚSICA ==================
+
   musicBtns.forEach(btn => {
     btn.addEventListener("click", () => {
       const novaMusica = btn.getAttribute("data-src");
@@ -103,19 +113,18 @@ document.addEventListener("DOMContentLoaded", () => {
         lofiAudio.src = musicaAtual;
         if (novaCapa) lofiCover.src = novaCapa;
 
-        // pausa automaticamente, usuário precisa iniciar
-        lofiAudio.pause();
         tocando = false;
         hasStarted = false;
         lofiImgBtn.textContent = "▶";
         lofiImgBtn.style.opacity = "1";
         lofiImgBtn.style.pointerEvents = "auto";
-        console.log("Música trocada, hasStarted resetado");
+        console.log("Música trocada, usuário precisa clicar no player para tocar");
       }
     });
   });
 
   // ================== BARRA DE VOLUME ==================
+
   volumeSlider.addEventListener("input", () => {
     lofiAudio.volume = volumeSlider.value / 100;
 
@@ -129,6 +138,7 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
   // ================== QUANDO A MÚSICA TERMINA ==================
+
   lofiAudio.addEventListener("ended", () => {
     tocando = false;
     lofiImgBtn.textContent = "▶";
@@ -138,52 +148,31 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
   // ================== APARECER/DESAPARECER BOTÃO ==================
+
   const hoverTarget = wrapper || lofiCover;
 
   hoverTarget.addEventListener("mouseenter", () => {
     lofiImgBtn.style.opacity = "1";
     lofiImgBtn.style.pointerEvents = "auto";
-    console.log("mouseenter -> mostrar botão");
   });
 
   hoverTarget.addEventListener("mouseleave", () => {
     if (hasStarted) {
       lofiImgBtn.style.opacity = "0";
       lofiImgBtn.style.pointerEvents = "none";
-      console.log("mouseleave -> esconder botão (já começou)");
     } else {
       lofiImgBtn.style.opacity = "1";
       lofiImgBtn.style.pointerEvents = "auto";
-      console.log("mouseleave -> não esconder (ainda não começou)");
     }
   });
 
-  // garantia: botão visível no início
-  lofiImgBtn.style.opacity = "1";
-  lofiImgBtn.style.pointerEvents = "auto";
-
   // ================== CONFIGURAR PRIMEIRA MÚSICA ==================
+  
   const primeiroBtn = musicBtns[0];
   if (primeiroBtn) {
     primeiroBtn.classList.add("active");
-    musicaAtual = primeiroBtn.getAttribute("data-src");
     const capa = primeiroBtn.getAttribute("data-img");
     if (capa) lofiCover.src = capa;
-    lofiAudio.src = musicaAtual;
-
-    // tocar só quando o usuário clicar no primeiro botão
-    primeiroBtn.addEventListener("click", () => {
-      if (!hasStarted) {
-        lofiAudio.play().then(() => {
-          tocando = true;
-          hasStarted = true;
-          lofiImgBtn.textContent = "❚❚";
-          console.log("Primeira música tocando após clicar no botão");
-        }).catch(err => {
-          console.warn("Erro ao tentar tocar:", err);
-        });
-      }
-    });
   }
 
   console.log("Script de player carregado. hasStarted:", hasStarted, "tocando:", tocando);
