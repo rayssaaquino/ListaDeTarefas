@@ -338,28 +338,26 @@ button:hover {
 /* ====== Até 480px (celulares pequenos) ====== */
 @media (max-width: 480px) {
   .left-column {
-    flex-direction: row;
-    justify-content: center;
-    align-items: stretch;
-    gap: 10px;
-    flex-wrap: wrap;
+    flex-direction: column;
+    align-items: center;
+    gap: 16px;
+    width: 100%;
   }
 
   .pomodoro,
   .lofi-card {
-    flex: 1 1 calc(50% - 10px);
-    max-width: calc(50% - 10px);
+    flex: 1 1 100%;
+    max-width: 90%;
     display: flex;
     justify-content: center;
     align-items: center;
   }
 
-  .pomodoro-card {
-    max-width: 140px;
-  }
-
+  .pomodoro-card,
   .lofi-card {
-    max-width: 140px;
+    width: 100%;
+    max-width: 260px;
+    padding: 12px;
     height: auto;
   }
 
@@ -379,12 +377,14 @@ button:hover {
   }
 
   .lofi-cover-container {
-    width: 130px;
-    height: 100px;
+    width: 100%;
+    max-width: 220px;
+    height: auto;
   }
 
   .volume-container {
-    width: 100px;
+    width: 90%;
+    max-width: 200px;
   }
 
   .volume-slider {
@@ -425,12 +425,9 @@ button:hover {
 
 /* ====== Até 360px (celulares muito pequenos) ====== */
 @media (max-width: 360px) {
-  .pomodoro-card {
-    max-width: 130px;
-  }
-
+  .pomodoro-card,
   .lofi-card {
-    max-width: 130px;
+    max-width: 230px;
   }
 
   #timer {
@@ -438,12 +435,14 @@ button:hover {
   }
 
   .lofi-cover-container {
-    width: 120px;
-    height: 90px;
+    width: 100%;
+    max-width: 200px;
+    height: auto;
   }
 
   .volume-container {
-    width: 90px;
+    width: 85%;
+    max-width: 180px;
   }
 
   .task-item {
