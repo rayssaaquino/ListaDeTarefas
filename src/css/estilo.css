@@ -226,228 +226,103 @@ button:hover {
     font-weight: 600 !important;
 }
 
-/* ====== Até 1024px (tablets) ====== */
-@media (max-width: 1024px) {
-  .layout {
-    flex-direction: column;
-    align-items: center;
-    gap: 20px;
-  }
+/* ======== RESPONSIVIDADE ======== */
 
-  .left-column {
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: flex-start;
-    flex-wrap: wrap;
-    width: 100%;
-    gap: 20px;
-    position: static;
-  }
-
-  .tarefas {
-    width: 90%;
-    max-width: 600px;
-  }
-}
-
-/* ====== Até 768px (celulares médios) ====== */
+/* TABLETS e telas médias */
 @media (max-width: 768px) {
-  .layout {
-    flex-direction: column;
-    align-items: center;
-    gap: 24px;
+  body {
+    padding: 20px;
   }
 
-  .left-column {
+  .container {
+    gap: 20px;
+  }
+
+  .top-section {
     flex-direction: row;
+    gap: 15px;
     justify-content: center;
-    align-items: stretch;
-    gap: 14px;
-    flex-wrap: nowrap;
-    width: 100%;
+    flex-wrap: wrap;
   }
 
-  .pomodoro,
-  .lofi-card {
-    flex: 1 1 48%;
-    max-width: 48%;
+  .timer-card,
+  .music-card {
+    width: 45%;
+    min-width: 180px;
+  }
+
+  /* Volume */
+  .volume-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    margin-top: 8px;
+  }
+
+  .volume-container input[type="range"] {
+    width: 80%;
+    max-width: 150px;
+  }
+
+  /* Cores */
+  .color-buttons {
     display: flex;
     justify-content: center;
-    align-items: center;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 10px;
   }
 
-  .pomodoro-card,
-  .lofi-card {
-    width: 100%;
-    max-width: 200px;
-    padding: 10px;
-    height: auto;
-  }
-
-  #timer {
-    font-size: 1.8rem;
-  }
-
-  .pomodoro-card img {
-    max-width: 100%;
-    height: auto;
-  }
-
-  .pomodoro-card button {
-    width: 80%;
-    max-width: 130px;
-    font-size: 0.9rem;
-  }
-
-  .lofi-cover-container {
-    width: 160px;
-    height: 130px;
-  }
-
-  .volume-container {
-    width: 140px;
-  }
-
-  .volume-slider {
-    height: 5px;
-  }
-
-  .tarefas {
-    width: 90%;
-    margin-top: 15px;
+  .color-btn {
+    width: 35px;
+    height: 35px;
   }
 }
 
-/* ====== Até 480px (celulares pequenos) ====== */
+/* CELULARES */
 @media (max-width: 480px) {
-  .left-column {
+  body {
+    padding: 15px;
+  }
+
+  .top-section {
     flex-direction: row;
+    flex-wrap: wrap;
     justify-content: center;
-    align-items: flex-start;
-    flex-wrap: nowrap;
     gap: 10px;
-    width: 100%;
-    overflow-x: auto; /* evita quebra e permite rolagem horizontal se necessário */
-    scrollbar-width: none; /* esconde scrollbar no Firefox */
   }
 
-  .left-column::-webkit-scrollbar {
-    display: none; /* esconde scrollbar no Chrome */
-  }
-
-  .pomodoro,
-  .lofi-card {
-    flex: 1 1 48%;
-    max-width: 48%;
+  .timer-card,
+  .music-card {
+    width: 48%;
     min-width: 150px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
   }
 
-  .pomodoro-card,
-  .lofi-card {
-    width: 100%;
-    max-width: 150px;
-    padding: 8px;
-    height: auto;
+  .timer {
+    font-size: 36px;
   }
 
-  #timer {
-    font-size: 1.6rem;
+  .timer-card img {
+    width: 80px;
+    height: 80px;
   }
 
-  .pomodoro-card img {
-    max-width: 100%;
-    height: auto;
+  .music-card {
+    padding: 15px;
   }
 
-  .pomodoro-card button {
-    width: 80%;
-    max-width: 120px;
-    font-size: 0.9rem;
-  }
-
-  .lofi-cover-container {
-    width: 100%;
-    max-width: 130px;
-    height: auto;
-  }
-
-  .volume-container {
+  .volume-container input[type="range"] {
     width: 100px;
   }
 
-  .lofi-options {
-    gap: 6px;
-    flex-wrap: wrap;
-    justify-content: center;
+  .color-btn {
+    width: 30px;
+    height: 30px;
   }
 
-  .tarefas {
-    width: 95%;
-    margin-top: 20px;
-  }
-
-  #main-action-btn {
+  .task-section {
     width: 100%;
-  }
-
-  .task-item {
-    font-size: 0.9rem;
-    padding: 10px;
-  }
-
-  .task-buttons button {
-    font-size: 0.9rem;
-    padding: 4px 6px;
-  }
-}
-
-/* ====== Até 360px (celulares muito pequenos) ====== */
-@media (max-width: 360px) {
-  .left-column {
-    flex-direction: row;
-    justify-content: center;
-    align-items: stretch;
-    gap: 8px;
-    flex-wrap: nowrap;
-    overflow-x: auto;
-  }
-
-  .pomodoro,
-  .lofi-card {
-    flex: 1 1 48%;
-    max-width: 48%;
-    min-width: 130px;
-  }
-
-  .pomodoro-card,
-  .lofi-card {
-    max-width: 130px;
-  }
-
-  #timer {
-    font-size: 1.4rem;
-  }
-
-  .lofi-cover-container {
-    width: 100%;
-    max-width: 120px;
-    height: auto;
-  }
-
-  .volume-container {
-    width: 85px;
-  }
-
-  .task-item {
-    font-size: 0.85rem;
-  }
-
-  .task-buttons button {
-    font-size: 0.8rem;
-    padding: 3px 5px;
+    padding: 20px;
   }
 }
