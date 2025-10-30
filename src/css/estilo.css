@@ -226,103 +226,299 @@ button:hover {
     font-weight: 600 !important;
 }
 
-/* ======== RESPONSIVIDADE ======== */
+/* ========================= RESPONSIVIDADE AJUSTADA ========================= */
 
-/* TABLETS e telas médias */
-@media (max-width: 768px) {
-  body {
-    padding: 20px;
-  }
-
-  .container {
+/* ====== Até 1024px (tablets) ====== */
+@media (max-width: 1024px) {
+  .layout {
+    flex-direction: column;
+    align-items: center;
     gap: 20px;
   }
 
-  .top-section {
+  .left-column {
+    display: flex;
     flex-direction: row;
-    gap: 15px;
     justify-content: center;
+    align-items: flex-start;
     flex-wrap: wrap;
+    width: 100%;
+    gap: 20px;
+    position: static;
   }
 
-  .timer-card,
-  .music-card {
-    width: 45%;
-    min-width: 180px;
-  }
-
-  /* Volume */
-  .volume-container {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 6px;
-    margin-top: 8px;
-  }
-
-  .volume-container input[type="range"] {
-    width: 80%;
-    max-width: 150px;
-  }
-
-  /* Cores */
-  .color-buttons {
-    display: flex;
-    justify-content: center;
-    flex-wrap: wrap;
-    gap: 8px;
-    margin-top: 10px;
-  }
-
-  .color-btn {
-    width: 35px;
-    height: 35px;
+  .tarefas {
+    width: 90%;
+    max-width: 600px;
   }
 }
 
-/* CELULARES */
-@media (max-width: 480px) {
-  body {
-    padding: 15px;
+/* ====== Até 768px (celulares médios) ====== */
+@media (max-width: 768px) {
+  .layout {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 24px;
   }
 
-  .top-section {
+  .left-column {
+    display: flex;
     flex-direction: row;
-    flex-wrap: wrap;
     justify-content: center;
+    align-items: stretch;
+    gap: 16px;
+    flex-wrap: wrap;
+    width: 100%;
+    position: static;
+  }
+
+  /* Pomodoro e Lofi lado a lado */
+  .pomodoro,
+  .lofi-card {
+    flex: 1 1 45%;
+    max-width: 45%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  /* Pomodoro reduzido */
+  .pomodoro-card {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    text-align: center;
+    width: 100%;
+    max-width: 180px;
+    min-height: 220px;
+    padding: 10px;
+    border-radius: 20px;
+    background: #fff;
+    box-shadow: 0 4px 12px rgba(255, 100, 150, 0.2);
+    box-sizing: border-box;
+  }
+
+  #timer {
+    font-size: 1.8rem;
+  }
+
+  .pomodoro-card img {
+    width: 80%;
+    max-width: 100px;
+    height: auto;
+  }
+
+  .pomodoro-card button {
+    width: 80%;
+    max-width: 130px;
+    font-size: 0.9rem;
+    margin-top: 8px;
+    background-color: #ff7bbf;
+    color: white;
+    border: none;
+    border-radius: 10px;
+    padding: 8px 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+  }
+
+  .pomodoro-card button:hover {
+    background-color: #ff5fae;
+  }
+
+  /* Lofi reduzido */
+  .lofi-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background: #fff;
+    padding: 10px;
+    border-radius: 20px;
+    box-shadow: 0 4px 12px rgba(255, 100, 150, 0.2);
+    max-width: 200px;
+    height: auto;
+  }
+
+  .lofi-cover-container {
+    width: 160px;
+    height: 130px;
+  }
+
+  .volume-container {
+    width: 140px;
+  }
+
+  .volume-slider {
+    height: 5px;
+  }
+
+  .lofi-options {
+    display: flex;
+    justify-content: center;
+    gap: 6px;
+    flex-wrap: wrap;
+  }
+
+  .lofi-music-btn {
+    width: 40px;
+    height: 40px;
+    font-size: 14px;
+  }
+
+  /* Tarefas abaixo */
+  .tarefas {
+    width: 90%;
+    margin-top: 15px;
+  }
+
+  #task {
+    width: 100%;
+  }
+}
+
+/* ====== Até 480px (celulares pequenos) ====== */
+@media (max-width: 480px) {
+  .left-column {
+    flex-direction: row; /* lado a lado */
+    justify-content: center;
+    align-items: stretch;
     gap: 10px;
+    flex-wrap: wrap;
   }
 
-  .timer-card,
-  .music-card {
-    width: 48%;
-    min-width: 150px;
+  .pomodoro,
+  .lofi-card {
+    flex: 1 1 45%; /* ocupam quase metade da linha */
+    max-width: 45%;
+    display: flex;
+    justify-content: center;
   }
 
-  .timer {
-    font-size: 36px;
+  .pomodoro-card {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    max-width: 150px;
+    min-height: 200px;
+    padding: 10px;
+    background: #fff;
+    border-radius: 20px;
+    box-shadow: 0 4px 12px rgba(255, 100, 150, 0.2);
+    box-sizing: border-box;
   }
 
-  .timer-card img {
-    width: 80px;
-    height: 80px;
+  #timer {
+    font-size: 1.5rem;
   }
 
-  .music-card {
-    padding: 15px;
+  .pomodoro-card img {
+    width: 70%;
+    max-width: 80px;
   }
 
-  .volume-container input[type="range"] {
+  .pomodoro-card button {
+    width: 80%;
+    font-size: 0.9rem;
+  }
+
+  .lofi-card {
+    max-width: 150px;
+    height: auto;
+  }
+
+  .lofi-cover-container {
+    width: 130px;
+    height: 100px;
+  }
+
+  .volume-container {
     width: 100px;
   }
 
-  .color-btn {
-    width: 30px;
-    height: 30px;
+  .volume-slider {
+    height: 5px;
   }
 
-  .task-section {
+  .lofi-options {
+    gap: 6px;
+    flex-wrap: wrap;
+  }
+
+  .lofi-music-btn {
+    width: 38px;
+    height: 38px;
+    font-size: 13px;
+  }
+
+  .tarefas {
+    width: 95%;
+    margin-top: 20px;
+  }
+
+  #main-action-btn {
     width: 100%;
-    padding: 20px;
+  }
+
+  .task-item {
+    font-size: 0.9rem;
+    padding: 10px;
+  }
+
+  .task-buttons button {
+    font-size: 0.9rem;
+    padding: 4px 6px;
+  }
+}
+
+/* ====== Telas muito pequenas (até 360px) ====== */
+@media (max-width: 360px) {
+  .left-column {
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 8px;
+  }
+
+  .pomodoro,
+  .lofi-card {
+    flex: 1 1 46%;
+    max-width: 46%;
+  }
+
+  .pomodoro-card {
+    max-width: 140px;
+    min-height: 180px;
+    padding: 8px;
+  }
+
+  .lofi-card {
+    max-width: 140px;
+  }
+
+  #timer {
+    font-size: 1.3rem;
+  }
+
+  .lofi-cover-container {
+    width: 120px;
+    height: 100px;
+  }
+
+  .volume-container {
+    width: 90px;
+  }
+
+  .task-item {
+    font-size: 0.85rem;
+  }
+
+  .task-buttons button {
+    font-size: 0.8rem;
+    padding: 3px 5px;
   }
 }
