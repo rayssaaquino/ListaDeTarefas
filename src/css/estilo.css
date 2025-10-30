@@ -400,3 +400,31 @@ button:hover {
     padding: 4px 6px;
   }
 }
+
+/* ====== Telas muito pequenas (até 360px) ====== */
+@media (max-width: 360px) {
+  .pomodoro-card {
+    max-width: 150px;
+  }
+
+  .lofi-card {
+    max-width: 150px;
+  }
+
+  #timer {
+    font-size: 1.4rem;
+  }
+
+  .lofi-cover-container {
+    width: 130px;
+    height: 100px;
+  }
+
+  .volume-container {
+    width: 110px;
+  }
+
+  .task-item {
+    font-size: 0.85rem;
+  }
+}
